@@ -1,0 +1,29 @@
+/* src/styles/global.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  
+  /* Pastikan menggunakan font yang sudah kita pilih */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  
+  /* --- UBAH BACKGROUND JADI PUTIH --- */
+  background: #eeeeee;
+  
+  /* --- UBAH WARNA TEKS GLOBAL JADI BIRU GELAP --- */
+  /* Agar sinkron dengan request warnamu (#1f204a) */
+  color: #1f204a;
+  
+  min-height: 100vh;
+  
+  /* Mencegah scroll ke samping (horizontal scroll) */
+  overflow-x: hidden; 
+  display: block;
+}
+
+/* Reset tambahan untuk memastikan layout rapi */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

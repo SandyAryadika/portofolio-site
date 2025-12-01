@@ -1,0 +1,47 @@
+/* src/index.css */
+
+/* 1. Reset Global */
+:root {
+  /* Menggunakan font yang sudah kita pilih sebelumnya */
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Memaksa tema gelap agar glassmorphism terlihat */
+  color-scheme: lgiht; 
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Styling Body (INI YANG PENTING) */
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  
+  /* BACKGROUND PUTIH */
+  background: #ffffff;
+  
+  overflow-x: hidden;
+}
+
+/* 3. Pastikan Container React (#root) memenuhi layar */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* Hapus max-width jika ada di style lain, tapi di sini kita set default aman */
+}
+
+/* 4. Reset Link (Opsional) */
+a {
+  text-decoration: none;
+  color: inherit; /* Mengikuti warna parent */
+}
+
+/* Kita hapus style button bawaan karena kita sudah punya class .btn sendiri di home.css */
