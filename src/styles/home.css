@@ -245,7 +245,8 @@
 
 /* --- SKILLS SECTION (TREE DIAGRAM) --- */
 .skills-section {
-  padding: 100px 20px;
+  /* padding: 100px 20px; */
+  padding-top: 80px;
   display: flex;
   justify-content: center;
 }
@@ -380,6 +381,153 @@
   border-color: #6366f1;
 }
 
+/* --- PROJECTS SECTION --- */
+.projects-section {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.projects-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.section-header .section-title {
+  /* Judul Besar ala Pixel */
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 6rem;
+  color: #1f204a;
+  line-height: 0.9;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #6b7280;
+  max-width: 500px;
+}
+
+/* GRID LAYOUT */
+.projects-grid {
+  display: grid;
+  /* Responsif: Minimal lebar kartu 350px, kalau muat bikin kolom baru */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
+
+/* KARTU PROYEK */
+.project-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden; /* Agar gambar tidak bocor keluar radius */
+  border: 1px solid #e1e1e1;
+  transition: all 0.4s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-10px); /* Kartu naik */
+  box-shadow: 0 20px 40px rgba(31, 32, 74, 0.1);
+  border-color: #1f204a;
+}
+
+/* GAMBAR PROYEK */
+.card-image-wrapper {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+  background: #e5e7eb; /* Placeholder warna abu */
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Efek Default: Hitam Putih (Grayscale) */
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+/* Saat Kartu Di-Hover: Gambar jadi berwarna & Zoom */
+.project-card:hover .card-image-wrapper img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* KONTEN KARTU */
+.card-content {
+  padding: 25px;
+  flex: 1; /* Agar tinggi kartu seragam */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.card-content h3 {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 2rem; /* Judul Proyek Pixel */
+  color: #1f204a;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.card-content p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1; /* Mendorong tags ke bawah */
+}
+
+/* TAGS TEKNOLOGI */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-tags span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1); /* Background ungu transparan */
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* TOMBOL LINK MINI (ICON) */
+.card-links-mini {
+  display: flex;
+  gap: 12px;
+}
+
+.card-links-mini a {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.card-links-mini a:hover {
+  color: #1f204a; /* Jadi gelap saat hover */
+}
+
 /* RESPONSIVE HP */
 @media (max-width: 900px) {
   .skills-split-container {
@@ -471,5 +619,17 @@
   
   .skill-branch::after {
     left: -25px;
+  }
+
+    .section-header .section-title {
+    font-size: 3.5rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr; /* 1 kolom di HP */
+  }
+  
+  .card-image-wrapper {
+    height: 200px;
   }
 }

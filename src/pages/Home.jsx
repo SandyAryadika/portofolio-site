@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import "../styles/home.css";
 
 // Import Icon
-import { FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, FaGithub, FaExternalLinkAlt, FaGraduationCap, FaAward } from "react-icons/fa";
 import { SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript, SiTypescript } from "react-icons/si";
 
 export default function Home() {
@@ -49,6 +49,63 @@ export default function Home() {
       clearTimeout(timeoutId);
     };
   }, []);
+
+  const projects = [
+    {
+      id: 1,
+      title: "News Portal Platform",
+      desc: "A modern content management system for news with role-based access control. Built during internship at Winnicode.",
+      tech: ["Laravel", "Filament", "TailwindCSS", "MySQL"],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop", // Ganti dengan screenshot aslimu nanti
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 2,
+      title: "Cloud Capstone API",
+      desc: "Scalable backend architecture for machine learning integration using GCP. Part of Bangkit Academy 2024 final project.",
+      tech: ["GCP", "Node.js", "Docker", "Cloud Run"],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 3,
+      title: "Personal Portfolio",
+      desc: "My own playground website featuring retro-modern design, scroll animations, and interactive UI components.",
+      tech: ["React", "Vite", "CSS Modules"],
+      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 1,
+      title: "News Portal Platform",
+      desc: "A modern content management system for news with role-based access control. Built during internship at Winnicode.",
+      tech: ["Laravel", "Filament", "TailwindCSS", "MySQL"],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop", // Ganti dengan screenshot aslimu nanti
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 2,
+      title: "Cloud Capstone API",
+      desc: "Scalable backend architecture for machine learning integration using GCP. Part of Bangkit Academy 2024 final project.",
+      tech: ["GCP", "Node.js", "Docker", "Cloud Run"],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 3,
+      title: "Personal Portfolio",
+      desc: "My own playground website featuring retro-modern design, scroll animations, and interactive UI components.",
+      tech: ["React", "Vite", "CSS Modules"],
+      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
+    }
+  ];
 
   return (
     <div className="main-container">
@@ -105,39 +162,86 @@ export default function Home() {
       </section>
 
       {/* --- SKILLS SECTION (VERTICAL TREE LAYOUT) --- */}
-<section className="skills-section" id="skills">
-  <div className="skills-tree-container">
-    
-    {/* BAGIAN KIRI: CORE (JUDUL) */}
-    <div className="skills-left">
-      <h2>Tech<br/>Stack</h2>
-    </div>
+      <section className="skills-section" id="skills">
+        <div className="skills-tree-container">
 
-    {/* BAGIAN KANAN: CABANG ICON (VERTICAL) */}
-    <div className="skills-right">
-      
-      {/* Kita bungkus tiap skill dengan 'skill-branch' untuk garisnya */}
-      
-      {/* FRONTEND GROUP */}
-      <div className="skill-branch"><div className="skill-pill"><FaReact className="icon react"/> React</div></div>
-      <div className="skill-branch"><div className="skill-pill"><SiTailwindcss className="icon tailwind"/> Tailwind</div></div>
-      <div className="skill-branch"><div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div></div>
-      <div className="skill-branch"><div className="skill-pill"><SiTypescript className="icon ts"/> TypeScript</div></div>
-      
-      {/* BACKEND GROUP */}
-      <div className="skill-branch"><div className="skill-pill"><FaLaravel className="icon laravel"/> Laravel</div></div>
-      <div className="skill-branch"><div className="skill-pill"><FaPhp className="icon php"/> PHP</div></div>
-      <div className="skill-branch"><div className="skill-pill"><SiMysql className="icon sql"/> MySQL</div></div>
-      
-      {/* TOOLS GROUP */}
-      <div className="skill-branch"><div className="skill-pill"><SiGooglecloud className="icon gcp"/> GCP</div></div>
-      <div className="skill-branch"><div className="skill-pill"><FaGitAlt className="icon git"/> Git</div></div>
-      <div className="skill-branch"><div className="skill-pill"><FaFigma className="icon figma"/> Figma</div></div>
-      
-    </div>
+          {/* BAGIAN KIRI: CORE (JUDUL) */}
+          <div className="skills-left">
+            <h2>Tech<br/>Stack</h2>
+          </div>
 
-  </div>
-</section>
+          {/* BAGIAN KANAN: CABANG ICON (VERTICAL) */}
+          <div className="skills-right">
+
+            {/* Kita bungkus tiap skill dengan 'skill-branch' untuk garisnya */}
+
+            {/* FRONTEND GROUP */}
+            <div className="skill-branch"><div className="skill-pill"><FaReact className="icon react"/> React</div></div>
+            <div className="skill-branch"><div className="skill-pill"><SiTailwindcss className="icon tailwind"/> Tailwind</div></div>
+            <div className="skill-branch"><div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div></div>
+            <div className="skill-branch"><div className="skill-pill"><SiTypescript className="icon ts"/> TypeScript</div></div>
+
+            {/* BACKEND GROUP */}
+            <div className="skill-branch"><div className="skill-pill"><FaLaravel className="icon laravel"/> Laravel</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaPhp className="icon php"/> PHP</div></div>
+            <div className="skill-branch"><div className="skill-pill"><SiMysql className="icon sql"/> MySQL</div></div>
+
+            {/* TOOLS GROUP */}
+            <div className="skill-branch"><div className="skill-pill"><SiGooglecloud className="icon gcp"/> GCP</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaGitAlt className="icon git"/> Git</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaFigma className="icon figma"/> Figma</div></div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- PROJECTS SECTION (BARU) --- */}
+      <section className="projects-section" id="projects">
+        <div className="projects-container">
+          
+          <div className="section-header">
+            <h2 className="section-title">Selected Works</h2>
+            <p className="section-subtitle">A collection of projects I've worked on.</p>
+          </div>
+
+          <div className="projects-grid">
+            {projects.map((project) => (
+              <div className="project-card" key={project.id}>
+                
+                {/* Gambar Proyek */}
+                <div className="card-image-wrapper">
+                  <img src={project.image} alt={project.title} />
+                  <div className="card-overlay"></div>
+                </div>
+
+                {/* Konten Kartu */}
+                <div className="card-content">
+                  <div className="card-header-flex">
+                    <h3>{project.title}</h3>
+                    {/* Tombol Link Kecil di atas */}
+                    <div className="card-links-mini">
+                      <a href={project.github} target="_blank" rel="noreferrer"><FaGithub/></a>
+                      <a href={project.demo} target="_blank" rel="noreferrer"><FaExternalLinkAlt/></a>
+                    </div>
+                  </div>
+
+                  <p>{project.desc}</p>
+
+                  {/* Tags Teknologi */}
+                  <div className="card-tags">
+                    {project.tech.map((t, index) => (
+                      <span key={index}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
 
     </div>
   );
