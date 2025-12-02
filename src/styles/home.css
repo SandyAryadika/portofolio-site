@@ -57,8 +57,8 @@
 
 /* --- DESKRIPSI (P) --- */
 .hero-content p {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 1.8rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem;
   
   color: #1f204a; 
   opacity: 0.8;
@@ -86,7 +86,7 @@
 /* Style Dasar Tombol */
 .btn {
   padding: 16px 40px;
-  border-radius: 10px;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
@@ -124,91 +124,277 @@
   transform: translateY(-5px);
 }
 
-/* --- TRIVIA SECTION (FULL WIDTH VERSION) --- */
-.trivia-section {
-  display: flex;
-  justify-content: center;
-  
-  /* Hapus padding samping agar nempel ke ujung layar */
-  padding: 0; 
-  
-  /* Pastikan lebar mengambil 100% layar */
-  width: 100%; 
-  
-  margin-top: 80px; 
-  margin-bottom: 100px;
-}
-
-.trivia-card {
-  /* Hapus max-width agar bisa melebar tanpa batas */
+/* --- MARQUEE / RUNNING TEXT SEAMLESS --- */
+.marquee-container {
   width: 100%;
-  max-width: 100%; 
-  
-  /* Tinggi banner */
-  height: 500px; 
-  
-  /* Background settings */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  
-  /* Hapus border-radius agar kotak sempurna (tidak melengkung) */
-  border-radius: 0; 
-  
-  /* Layout untuk menengahkan kotak kaca */
+  overflow: hidden; /* Sembunyikan teks yang lewat batas layar */
+  padding-top: 100px; /* Jarak atas bawah */
+}
+
+.marquee-track {
   display: flex;
-  align-items: center;
+  width: max-content; /* Lebar mengikuti panjang teks */
+  gap: 0; /* Tidak ada jarak antar blok duplikasi */
+
+  /* TAMBAHAN PENTING: */
+  /* Agar poros miringnya dari tengah, bukan dari pinggir */
+  transform-origin: center; 
+  /* Will-change memberitahu browser untuk menyiapkan GPU (Performa lebih mulus) */
+  will-change: transform;
+}
+
+.marquee-content {
+  /* Agar teks tidak turun baris */
+  white-space: nowrap;
+  
+  /* Styling Font */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 5rem; /* Sesuaikan ukuran font sesuai selera */
+  color: #1f204a;   /* Warna Navy */
+  
+  /* PENTING: Animasi Seamless */
+  /* Bergerak ke KANAN (Reverse direction dari normal marquee) */
+  animation: scrollSeamlessLeft 90s linear infinite;
+  
+  /* Pastikan tidak mengecil */
+  flex-shrink: 0;
+}
+
+/* ANIMASI GERAK KE KANAN TANPA JEDA */
+@keyframes scrollSeamlessLeft {
+  from {
+    /* Mulai dari posisi 0% (blok kanan tersembunyi, blok kiri terlihat) */
+    transform: translateX(0%);
+  }
+  to {
+    /* Berakhir di posisi 0 (blok kanan sudah masuk layar sepenuhnya) */
+    transform: translateX(-100%);
+  }
+}
+
+/* --- ABOUT SECTION --- */
+.about-section {
+  padding: 40px 20px;  
+  display: flex;
   justify-content: center;
-  position: relative;
-  
-  /* Shadow opsional (mungkin tidak terlalu terlihat jika full width, tapi gapapa) */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-/* --- KOTAK KACA (GLASS BOX) --- */
-/* Bagian ini tidak perlu diubah banyak, hanya pastikan tetap di tengah */
-.trivia-glass-box {
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  
-  padding: 40px 60px; /* Padding sedikit diperbesar */
-  border-radius: 10px; /* Kotak dalamnya tetap melengkung agar manis */
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  
-  text-align: center;
-  max-width: 800px; /* Lebar kotak teks */
-  width: 90%; 
-  
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+.about-content {
+  width: 100%;
+  max-width: 1100px;
 }
 
-/* ... Style font (quote-icon, p, quote-author) biarkan sama ... */
-.quote-icon {
-  font-size: 3rem;
+.section-title {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 6rem; /* Judul Besar */
   color: #1f204a;
-  display: block;
-  margin-bottom: 15px;
+  margin-bottom: 2rem;
+  text-align: left; /* Rata Kiri sesuai request */
   line-height: 1;
 }
 
-.trivia-glass-box p {
-  font-family: 'AmstirPixel', sans-serif; 
-  font-size: 1.8rem;
-  color: #1f204a;   
-  margin: 0;
-  line-height: 1.5;
+.about-grid {
+  display: grid;
+  /* Grid: Teks (1.5 bagian) - Foto (1 bagian) */
+  grid-template-columns: 1.5fr 1fr; 
+  gap: 4rem;
+  align-items: start; /* Rata atas */
 }
 
-.quote-author {
-  display: block;
-  margin-top: 20px;
+.about-text p {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.15rem; /* Ukuran pas untuk dibaca */
+  color: #1f204a;
+  line-height: 1.8; /* Spasi antar baris agar tidak sesak */
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  text-align: justify; /* Opsional: Rata kanan-kiri agar rapi, atau 'left' */
+}
+
+/* Styling untuk kata yang di-Bold (<b>) */
+.about-text b {
+  color: #1f204a; /* Tetap navy */
   font-weight: 700;
+  border-bottom: 2px solid #a5b4fc; /* Garis bawah ungu muda sebagai highlight */
+}
+
+/* Kotak Placeholder Foto */
+.profile-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1.2; /* Rasio potrait sedikit */
+  background: #f0f0f0;
+  border: 2px solid #1f204a;
+  border-radius: 10px; /* Rounded sesuai tema */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'AmstirPixel', sans-serif;
+  color: #1f204a;
+  font-size: 1.5rem;
+  
+  /* Efek bayangan solid */
+  box-shadow: 10px 10px 0px rgba(31, 32, 74, 0.1); 
+  transition: all 0.3s ease;
+}
+
+.profile-placeholder:hover {
+  transform: translate(-5px, -5px);
+  box-shadow: 15px 15px 0px rgba(31, 32, 74, 0.2); 
+}
+
+/* --- SKILLS SECTION (TREE DIAGRAM) --- */
+.skills-section {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.skills-tree-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px; /* Tidak perlu terlalu lebar agar garisnya enak dilihat */
+  gap: 0; /* Gap diatur manual via padding */
+  position: relative;
+}
+
+/* --- BAGIAN KIRI (JUDUL) --- */
+.skills-left {
+  flex: 0 0 35%; /* Mengambil 35% lebar */
+  text-align: right; /* Rata kanan agar dekat dengan garis */
+  padding-right: 40px; /* Jarak antara teks dan garis vertikal */
+  
+  /* Agar Judul tetap diam saat scroll (Sticky) */
+  position: sticky;
+  top: 150px; 
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.skills-left h2 {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 6rem; 
+  line-height: 0.9;
+  color: #1f204a;
+  margin: 0;
+  position: relative;
+}
+
+/* GARIS PENGHUBUNG UTAMA (DARI TEKS KE GARIS VERTIKAL) */
+.skills-left h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -40px; /* Menembus padding */
+  width: 40px; /* Panjang garis */
+  height: 3px; /* Ketebalan garis */
+  background: #1f204a;
+}
+
+/* --- BAGIAN KANAN (LIST ICON) --- */
+.skills-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* VERTICAL */
+  gap: 20px; /* Jarak antar icon vertical */
+  position: relative;
+  
+  /* GARIS VERTIKAL UTAMA (TIANG) */
+  border-left: 3px solid #1f204a; 
+  padding-left: 40px; /* Jarak icon dari garis tiang */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* --- ITEM SKILL & CABANG --- */
+.skill-branch {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* GARIS CABANG KECIL (DARI TIANG KE ICON) */
+.skill-branch::before {
+  content: '';
+  position: absolute;
+  left: -40px; /* Mundur ke garis tiang */
+  top: 50%;
+  width: 40px; /* Panjang garis cabang */
+  height: 2px;
+  background: #1f204a; /* Warna garis cabang */
+  transition: all 0.3s ease;
+}
+
+/* TITIK KONEKTOR (BULATAN DI TIANG) */
+.skill-branch::after {
+  content: '';
+  position: absolute;
+  left: -44px; /* Pas di tengah garis tiang */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border: 2px solid #1f204a;
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Styling Pill Icon (Tetap sama, dirapikan sedikit) */
+.skill-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f204a;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 12px 28px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  width: fit-content; /* Lebar sesuai isi */
+}
+
+/* EFEK HOVER KEREN */
+/* Saat salah satu branch di hover: */
+.skill-branch:hover .skill-pill {
+  transform: translateX(10px); /* Geser ke kanan */
+  border-color: #6366f1;
   color: #6366f1;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+}
+
+/* Ubah warna garis cabang saat hover */
+.skill-branch:hover::before {
+  background: #6366f1; 
+}
+
+/* Ubah warna titik saat hover */
+.skill-branch:hover::after {
+  background: #6366f1;
+  border-color: #6366f1;
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 900px) {
+  .skills-split-container {
+    flex-direction: column; /* Jadi atas bawah di HP/Tablet */
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  
+  .skills-left h2 {
+    font-size: 4rem; /* Kecilkan judul di HP */
+  }
+  
+  .skills-right {
+    justify-content: flex-start;
+  }
 }
 
 /* --- RESPONSIVE (PENTING) --- */
@@ -234,16 +420,56 @@
     box-sizing: border-box;
   }
 
-  .trivia-card {
-    height: 350px; /* Di HP jangan terlalu tinggi */
-    border-radius: 20px;
+.marquee-content {
+    font-size: 1.5rem; /* Font lebih kecil di HP */
+    animation-duration: 10s; /* Lebih cepat di layar kecil */
+  }
+
+    .about-grid {
+    grid-template-columns: 1fr; /* Jadi 1 kolom */
+    gap: 2rem;
   }
   
-  .trivia-glass-box {
-    padding: 20px;
+  .about-image {
+    order: -1; /* Foto pindah ke atas di HP */
+    max-width: 300px; /* Batasi lebar foto di HP */
+    margin: 0 auto; /* Tengah */
   }
   
-  .trivia-glass-box p {
-    font-size: 1.3rem; /* Kecilkan font di HP */
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .skills-tree-container {
+    flex-direction: column;
+  }
+  
+  .skills-left {
+    text-align: left;
+    padding-right: 0;
+    padding-bottom: 20px;
+    padding-left: 20px; /* Geser dikit */
+    top: 0;
+    position: relative;
+    justify-content: flex-start;
+  }
+  
+  .skills-left h2::after {
+    display: none; /* Hapus garis konektor judul di HP */
+  }
+  
+  .skills-right {
+    padding-left: 20px;
+    border-left: 2px solid #e5e7eb; /* Garis tiang lebih tipis di HP */
+    margin-left: 20px;
+  }
+  
+  .skill-branch::before {
+    width: 20px;
+    left: -20px;
+  }
+  
+  .skill-branch::after {
+    left: -25px;
   }
 }
