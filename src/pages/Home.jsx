@@ -1,12 +1,15 @@
 // src/pages/Home.jsx
 import { useEffect, useRef, useState } from "react";
 import "../styles/home.css";
+import CardSwap, { Card } from "../components/CardSwap";
+import Lanyard from "../components/Lanyard";
 
 // Import Semua Icon yang digunakan (Pastikan baris ini lengkap)
 import { 
   FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, 
   FaGithub, FaExternalLinkAlt, FaArrowRight, FaGraduationCap, 
-  FaAward, FaEnvelope, FaLinkedin, FaInstagram, FaCopy, FaCheck 
+  FaAward, FaEnvelope, FaLinkedin, FaInstagram, FaCopy, FaCheck,
+  FaCertificate
 } from "react-icons/fa";
 import { 
   SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript, SiTypescript 
@@ -105,6 +108,33 @@ export default function Home() {
     },
   ];
 
+  const certificates = [
+    {
+      id: 1,
+      title: "Google Cloud Associate Cloud Engineer",
+      issuer: "Google Cloud",
+      date: "Issued Dec 2024 · Expires Dec 2027",
+      link: "#", 
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png"
+    },
+    {
+      id: 2,
+      title: "Belajar Fundamental Aplikasi Web",
+      issuer: "Dicoding Indonesia",
+      date: "Issued Oct 2023 · No Expiration",
+      link: "#", 
+      image: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png"
+    },
+    {
+      id: 3,
+      title: "Menjadi Front-End Web Developer Expert",
+      issuer: "Dicoding Indonesia",
+      date: "Issued Aug 2023 · No Expiration",
+      link: "#",
+      image: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png"
+    }
+  ];
+
   // STATE COPY EMAIL
   const [copied, setCopied] = useState(false);
   const email = "aryadikawidodo0@gmail.com"; 
@@ -114,6 +144,15 @@ export default function Home() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); 
   };
+
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // ----------------------------------------------------------------------
 
   return (
     <div className="main-container">
@@ -146,6 +185,8 @@ export default function Home() {
         <div className="about-content">
           <h2 className="section-title">About Me</h2>
           <div className="about-grid">
+            
+            {/* Bagian Teks (Kiri) */}
             <div className="about-text">
               <p>
                 I am an undergraduate student driven by the intersection of <b>Cloud Computing</b>, <b>Web Development</b>, and <b>Product Design</b>. I believe that technology isn't just about writing code—it's about solving real problems with user-centered thinking.
@@ -160,11 +201,13 @@ export default function Home() {
                 — Code that even future-me can’t understand.
               </div>
             </div>
-            <div className="about-image">
-              <div className="profile-placeholder">
-                 Your Photo
-              </div>
+            
+            {/* Bagian Gambar (Kanan) - DISINI POSISI LANYARD */}
+            <div className="about-image" style={{ height: '500px', position: 'relative', zIndex: 10 }}>
+              {/* USAGE LANYARD */}
+              <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
             </div>
+
           </div>
         </div>
       </section>
@@ -254,6 +297,91 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* --- CERTIFICATES SECTION (CARD SWAP) --- */}
+      <section className="certificates-section" id="certificates">
+        <div className="certificates-container">
+          
+          {/* Header Split */}
+          <div className="certificates-split">
+            <div className="certificates-left">
+              <h2 className="section-title">Certifications</h2>
+              <p className="section-subtitle">
+                A showcase of my professional growth. <br/>
+                Verified credentials from top industry leaders.
+              </p>
+            </div>
+            
+            {/* Area Animasi Card Swap */}
+            <div className="certificates-right">
+              {/* Gunakan Component CardSwap */}
+              <CardSwap
+                width={550}  // Lebar kartu
+                height={420} // Tinggi kartu
+                cardDistance={50} // Jarak geser X
+                verticalDistance={40} // Jarak geser Y
+                delay={4000} // Kecepatan ganti (ms)
+                skewAmount={4}
+              >
+                {certificates.map((cert) => (
+                  <Card key={cert.id}>
+                    {/* Header Kartu: Logo & Link */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+                      <div style={{ 
+                          width: '50px', 
+                          height: '50px', 
+                          background: '#f9fafb', 
+                          borderRadius: '12px', 
+                          padding: '8px', 
+                          border: '1px solid #f3f4f6',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                      }}>
+                          <img src={cert.image} alt={cert.issuer} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      </div>
+                      <a href={cert.link} target="_blank" rel="noreferrer" style={{ color: '#9ca3af', cursor: 'pointer' }}>
+                          <FaExternalLinkAlt />
+                      </a>
+                    </div>
+
+                    {/* Isi Teks Kartu */}
+                    <div>
+                      <h3 style={{ 
+                          fontFamily: "'Plus Jakarta Sans', sans-serif", 
+                          fontSize: '1.4rem', 
+                          color: '#1f204a', 
+                          margin: '0 0 5px 0',
+                          lineHeight: '1.1'
+                      }}>
+                          {cert.title}
+                      </h3>
+                      <p style={{ 
+                          fontFamily: "'Plus Jakarta Sans', sans-serif", 
+                          fontSize: '0.85rem', 
+                          fontWeight: '600', 
+                          color: '#6366f1', 
+                          margin: '0 0 5px 0' 
+                      }}>
+                          {cert.issuer}
+                      </p>
+                      <p style={{ 
+                          fontFamily: "'Plus Jakarta Sans', sans-serif", 
+                          fontSize: '0.8rem', 
+                          color: '#9ca3af',
+                          margin: 0 
+                      }}>
+                          {cert.date}
+                      </p>
+                    </div>
+                  </Card>
+                ))}
+              </CardSwap>
+            </div>
+          </div>
+
         </div>
       </section>
 

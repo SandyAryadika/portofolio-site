@@ -1,0 +1,42 @@
+/* src/components/CardSwap.css */
+
+.card-swap-container {
+  position: relative; /* Diubah jadi relative agar pas di dalam layout flex */
+  /* Hapus absolute bottom/right bawaan agar mudah diatur di layout */
+  transform-origin: center center;
+  perspective: 900px;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px; /* Radius lebih besar */
+  
+  /* --- CUSTOM STYLE UNTUK TEMA KAMU --- */
+  background: #ffffff; 
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 40px rgba(31, 32, 74, 0.1); /* Bayangan halus */
+  
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  /* Padding untuk konten */
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .card-swap-container {
+    transform: scale(0.85); /* Kecilkan sedikit di HP */
+  }
+}

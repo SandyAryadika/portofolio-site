@@ -1,7 +1,4 @@
 /* src/styles/home.css */
-
-/* src/styles/home.css */
-
 /* PENTING: Jangan lupa definisikan font pixel lagi di atas jika masih mau pakai */
 @font-face {
   font-family: 'AmstirPixel';
@@ -175,9 +172,21 @@
 
 /* --- ABOUT SECTION --- */
 .about-section {
-  padding: 40px 20px;  
+  padding: 100px 20px;
   display: flex;
   justify-content: center;
+  /* HAPUS overflow: hidden; jika ada, ganti visible */
+  overflow: visible; 
+}
+.about-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Tambahkan perspective agar efek 3D maksimal */
+  perspective: 1000px;
+  /* Pastikan z-index tinggi agar kartu muncul di atas elemen lain */
+  z-index: 10;
 }
 
 .about-content {
@@ -219,33 +228,10 @@
   border-bottom: 2px solid #a5b4fc; /* Garis bawah ungu muda sebagai highlight */
 }
 
-/* Kotak Placeholder Foto */
-.profile-placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1.2; /* Rasio potrait sedikit */
-  background: #f0f0f0;
-  border: 2px solid #1f204a;
-  border-radius: 10px; /* Rounded sesuai tema */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'AmstirPixel', sans-serif;
-  color: #1f204a;
-  font-size: 1.5rem;
-  
-  /* Efek bayangan solid */
-  box-shadow: 10px 10px 0px rgba(31, 32, 74, 0.1); 
-  transition: all 0.3s ease;
-}
-
-.profile-placeholder:hover {
-  transform: translate(-5px, -5px);
-  box-shadow: 15px 15px 0px rgba(31, 32, 74, 0.2); 
-}
 
 /* --- SKILLS SECTION (TREE DIAGRAM) --- */
 .skills-section {
-  padding: 80px 20px;  
+  padding: 40px 20px;  
   display: flex;
   justify-content: center;
 }
@@ -331,7 +317,7 @@
 .skill-branch::after {
   content: '';
   position: absolute;
-  left: -44px; /* Pas di tengah garis tiang */
+  left: -49px; /* Pas di tengah garis tiang */
   top: 50%;
   transform: translateY(-50%);
   width: 10px;
@@ -527,10 +513,9 @@
   color: #1f204a; /* Jadi gelap saat hover */
 }
 
-/* --- EDUCATION SECTION (FINAL FIXED STYLE) --- */
-
+/* --- EDUCATION SECTION (FIXED TIMELINE) --- */
 .education-section {
-  padding: 80px 20px;
+  padding: 100px 20px;
   display: flex;
   justify-content: center;
 }
@@ -540,133 +525,201 @@
   max-width: 1100px;
 }
 
-/* HEADER SECTION */
-.education-header {
-  margin-bottom: 60px;
-}
-
+.education-header { margin-bottom: 60px; }
 .education-header .section-title {
   font-family: 'AmstirPixel', sans-serif;
   font-size: 6rem;
-  line-height: 1;
   color: #1f204a;
+  line-height: 1;
   margin: 0;
 }
-
 .education-header p {
-  font-family: 'AmstirPecel', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   color: #6b7280;
   margin-top: 10px;
   font-size: 1.1rem;
 }
 
-/* LIST CONTAINER */
-.education-list {
-  display: flex;
-  flex-direction: column;
+/* PENTING: Hapus gap agar item menempel */
+.education-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0; 
 }
 
-/* --- ITEM ROW (CONTAINER UTAMA) --- */
+/* ITEM WRAPPER */
 .edu-item {
   display: flex;
   position: relative;
-  padding: 15px 0; /* Jarak vertikal */
-  border-top: 1px solid rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
+  /* Hapus padding di wrapper, pindahkan ke isi */
+  padding: 0;
+  /* Beri min-height agar proporsional */
+  min-height: 150px; 
 }
 
-/* 1. KOLOM TAHUN (KIRI) - LEBAR DIKUNCI */
-.edu-year {
-  /* Kita perlebar jadi 180px agar muat untuk teks panjang/stacked */
-  flex: 0 0 180px; 
-  
-  /* Pastikan tidak bisa menyusut/melebar otomatis */
-  flex-shrink: 0; 
-  
-  text-align: right; /* Rata Kanan */
-  padding-right: 30px; /* Jarak dari angka tahun ke Garis Tengah */
-  
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1.2; /* Sedikit renggang agar tumpukan tahun (2019 - 2022) rapi */
-  color: #9ca3af;
-  transition: all 0.3s ease;
-}
-
-/* 2. GARIS VERTIKAL (TIANG TENGAH) */
+/* GARIS VERTIKAL YANG NYAMBUNG */
 .edu-item::before {
   content: '';
   position: absolute;
-  
-  /* POSISI PASTI: Lebar Tahun (180px) */
-  left: 220px; 
-  
+  left: 220px; /* Posisi garis */
   top: 0;
   bottom: 0;
+  height: 100%; /* Tarik penuh dari atas ke bawah */
   width: 2px;
   background: #e5e7eb;
   z-index: 1;
 }
 
-/* 3. IKON TIMELINE (TITIK TENGAH) */
+/* Potong garis di item TERAKHIR agar tidak bocor ke bawah */
+.edu-item:last-child::before {
+  height: 45px; /* Stop pas di ikon */
+  bottom: auto;
+}
+
+/* ISI: TAHUN */
+.edu-year {
+  flex: 0 0 180px;
+  flex-shrink: 0;
+  text-align: right;
+  /* Beri padding di sini sebagai pengganti gap */
+  padding: 40px 40px 40px 0;
+  
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+/* ISI: DETAIL */
+.edu-details {
+  flex: 1;
+  padding: 40px 0 40px 80px;
+  /* Border pemisah ada di sini */
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Hapus border di item terakhir */
+.edu-item:last-child .edu-details {
+  border-bottom: none;
+}
+
+.edu-details h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f204a;
+  margin: 0 0 5px 0;
+}
+
+.edu-details h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #6366f1;
+  margin: 0 0 15px 0;
+}
+
+.edu-details p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0;
+  text-align: justify;
+}
+
+/* IKON TIMELINE */
 .edu-timeline-icon {
   position: absolute;
-  
-  /* POSISI PASTI: Sama dengan garis (180px) + koreksi tengah (1px) */
-  left: 221px;
+  left: 221px; /* Pas di tengah garis */
   transform: translateX(-50%);
-  
-  /* Tinggi sejajar dengan baris pertama Judul */
-  top: 40px; 
-  
+  top: 45px; /* Sejajar dengan teks tahun */
   width: 44px;
   height: 44px;
-  
   background: #ffffff;
   border: 2px solid #e5e7eb;
   border-radius: 50%;
-  
   display: flex;
   align-items: center;
   justify-content: center;
-  
   font-size: 1.1rem;
   color: #9ca3af;
   z-index: 2;
   transition: all 0.3s ease;
 }
 
-/* 4. KOLOM DETAIL (KANAN) */
-.edu-details {
-  flex: 1; /* Mengisi sisa ruang */
-  
-  /* Padding kiri ditambah agar teks judul tidak mepet ikon */
-  padding-left: 50px;
-  text-align: justify;
+/* PANAH KANAN */
+.edu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: #1f204a;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+  padding-top: 40px; /* Sejajar dengan konten */
 }
 
-.edu-details h3 {
- font-size: 2rem;
-}
-
-.edu-details h4 {
- color: #6366f1;
-}
-
+/* HOVER EFFECTS */
 .edu-item:hover .edu-year { color: #1f204a; }
-.edu-item:hover::before { background: #a5b4fc; }
 .edu-item:hover .edu-timeline-icon {
-  background: #1f204a;
-  color: #ffffff;
-  border-color: #1f204a;
-  transform: translateX(-50%) scale(1.15);
-  box-shadow: 0 0 0 5px rgba(31, 32, 74, 0.15);
+  background: #1f204a; color: #ffffff; border-color: #1f204a; transform: translateX(-50%) scale(1.15);
+}
+.edu-item:hover .edu-icon { opacity: 1; transform: translateX(0); }
+
+/* --- CERTIFICATES SECTION --- */
+.certificates-section {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  /* overflow: hidden; -> Hati-hati dengan ini jika kartu terpotong */
+}
+
+.certificates-container {
+  width: 100%;
+  max-width: 1150px;
+}
+
+.certificates-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.certificates-left {
+  flex: 1;
+}
+
+.certificates-left .section-title {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 6rem;
+  color: #1f204a;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.certificates-left .section-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.certificates-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
 }
 
 /* --- CONTACT SECTION --- */
 .contact-section {
-  padding: 80px 20px 40px 20px;
+  padding: 40px 20px 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -861,9 +914,13 @@
   }
   
   .about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     order: -1; /* Foto pindah ke atas di HP */
     max-width: 300px; /* Batasi lebar foto di HP */
     margin: 0 auto; /* Tengah */
+    perspective: 1000px;
   }
   
   .section-title {
@@ -915,34 +972,36 @@
     height: 200px;
   }
 
-  .edu-item {
-    flex-direction: column; 
-    padding-left: 50px; /* Ruang untuk garis di kiri */
+  .edu-item { flex-direction: column; }
+  .edu-year { 
+    text-align: left; 
+    padding: 20px 0 10px 60px; /* Geser kanan biar gak nabrak garis */
+    font-size: 2.5rem; 
   }
-
-  .edu-year {
-    text-align: left;
-    padding-right: 0;
-    margin-bottom: 10px;
-    flex: auto;
-    font-size: 2.5rem;
-  }
-  
-  .edu-details {
-    padding-left: 0;
-  }
-
-  /* Garis Pindah ke Kiri Layar */
+  .edu-details { padding: 0 0 40px 60px; }
   .edu-item::before { left: 20px; }
-  
-  /* Ikon Pindah ke Kiri Layar */
-  .edu-timeline-icon { 
-    left: 21px; 
-    top: 45px;
-  }
+  .edu-timeline-icon { left: 21px; top: 25px; }
+  .edu-item:last-child::before { height: 25px; }
+  .edu-icon { display: none; }
 
   .contact-section .section-title {
     font-size: 3.5rem;
+  }
+
+  .certificates-split {
+    flex-direction: column;
+    gap: 3rem; /* Jarak antar teks dan kartu diperlebar */
+    text-align: center;
+  }
+  
+  .certificates-left .section-title {
+    font-size: 4rem;
+  }
+
+  /* Di Tablet/Laptop kecil, tinggi area disesuaikan */
+  .certificates-right {
+    height: 500px;
+    width: 100%;
   }
   
   .email-box {
