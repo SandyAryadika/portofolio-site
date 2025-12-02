@@ -245,8 +245,7 @@
 
 /* --- SKILLS SECTION (TREE DIAGRAM) --- */
 .skills-section {
-  /* padding: 100px 20px; */
-  padding-top: 80px;
+  padding: 80px 20px;  
   display: flex;
   justify-content: center;
 }
@@ -528,6 +527,289 @@
   color: #1f204a; /* Jadi gelap saat hover */
 }
 
+/* --- EDUCATION SECTION (FINAL FIXED STYLE) --- */
+
+.education-section {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.education-container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* HEADER SECTION */
+.education-header {
+  margin-bottom: 60px;
+}
+
+.education-header .section-title {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 6rem;
+  line-height: 1;
+  color: #1f204a;
+  margin: 0;
+}
+
+.education-header p {
+  font-family: 'AmstirPecel', sans-serif;
+  color: #6b7280;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+/* LIST CONTAINER */
+.education-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- ITEM ROW (CONTAINER UTAMA) --- */
+.edu-item {
+  display: flex;
+  position: relative;
+  padding: 15px 0; /* Jarak vertikal */
+  border-top: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+/* 1. KOLOM TAHUN (KIRI) - LEBAR DIKUNCI */
+.edu-year {
+  /* Kita perlebar jadi 180px agar muat untuk teks panjang/stacked */
+  flex: 0 0 180px; 
+  
+  /* Pastikan tidak bisa menyusut/melebar otomatis */
+  flex-shrink: 0; 
+  
+  text-align: right; /* Rata Kanan */
+  padding-right: 30px; /* Jarak dari angka tahun ke Garis Tengah */
+  
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2; /* Sedikit renggang agar tumpukan tahun (2019 - 2022) rapi */
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+/* 2. GARIS VERTIKAL (TIANG TENGAH) */
+.edu-item::before {
+  content: '';
+  position: absolute;
+  
+  /* POSISI PASTI: Lebar Tahun (180px) */
+  left: 220px; 
+  
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+  z-index: 1;
+}
+
+/* 3. IKON TIMELINE (TITIK TENGAH) */
+.edu-timeline-icon {
+  position: absolute;
+  
+  /* POSISI PASTI: Sama dengan garis (180px) + koreksi tengah (1px) */
+  left: 221px;
+  transform: translateX(-50%);
+  
+  /* Tinggi sejajar dengan baris pertama Judul */
+  top: 40px; 
+  
+  width: 44px;
+  height: 44px;
+  
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 1.1rem;
+  color: #9ca3af;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* 4. KOLOM DETAIL (KANAN) */
+.edu-details {
+  flex: 1; /* Mengisi sisa ruang */
+  
+  /* Padding kiri ditambah agar teks judul tidak mepet ikon */
+  padding-left: 50px;
+  text-align: justify;
+}
+
+.edu-details h3 {
+ font-size: 2rem;
+}
+
+.edu-details h4 {
+ color: #6366f1;
+}
+
+.edu-item:hover .edu-year { color: #1f204a; }
+.edu-item:hover::before { background: #a5b4fc; }
+.edu-item:hover .edu-timeline-icon {
+  background: #1f204a;
+  color: #ffffff;
+  border-color: #1f204a;
+  transform: translateX(-50%) scale(1.15);
+  box-shadow: 0 0 0 5px rgba(31, 32, 74, 0.15);
+}
+
+/* --- CONTACT SECTION --- */
+.contact-section {
+  padding: 80px 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 80px;
+}
+
+.contact-section .section-title {
+  width: 100%;
+  text-align: center;
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 6rem;
+  color: #1f204a;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.contact-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* EMAIL BOX (INTERAKTIF) */
+.email-box {
+  background: #f9fafb;
+  border: 2px dashed #e5e7eb; /* Border putus-putus estetik */
+  border-radius: 20px;
+  padding: 20px 40px;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.email-box:hover {
+  border-color: #6366f1; /* Border jadi ungu saat hover */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+}
+
+.email-text {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 2rem;
+  color: #1f204a;
+  padding-top: 5px; /* Koreksi vertikal font pixel */
+}
+
+.email-icon, .copy-icon {
+  font-size: 1.5rem;
+  color: #9ca3af;
+  transition: color 0.3s ease;
+}
+
+.email-box:hover .email-icon,
+.email-box:hover .copy-icon {
+  color: #6366f1;
+}
+
+/* Tooltip "Copied!" */
+.copy-feedback {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  
+  background: #1f204a;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.copy-feedback.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* SOCIAL LINKS */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1f204a;
+  text-decoration: none;
+  
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: #1f204a;
+  color: #ffffff;
+  border-color: #1f204a;
+  transform: translateY(-3px);
+}
+
+/* FOOTER */
+.footer {
+  width: 100%;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 30px;
+}
+
+.footer p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
 /* RESPONSIVE HP */
 @media (max-width: 900px) {
   .skills-split-container {
@@ -631,5 +913,56 @@
   
   .card-image-wrapper {
     height: 200px;
+  }
+
+  .edu-item {
+    flex-direction: column; 
+    padding-left: 50px; /* Ruang untuk garis di kiri */
+  }
+
+  .edu-year {
+    text-align: left;
+    padding-right: 0;
+    margin-bottom: 10px;
+    flex: auto;
+    font-size: 2.5rem;
+  }
+  
+  .edu-details {
+    padding-left: 0;
+  }
+
+  /* Garis Pindah ke Kiri Layar */
+  .edu-item::before { left: 20px; }
+  
+  /* Ikon Pindah ke Kiri Layar */
+  .edu-timeline-icon { 
+    left: 21px; 
+    top: 45px;
+  }
+
+  .contact-section .section-title {
+    font-size: 3.5rem;
+  }
+  
+  .email-box {
+    padding: 15px 20px;
+    width: 100%; /* Full width di HP */
+    flex-direction: column; /* Icon di atas, teks di bawah */
+    gap: 10px;
+  }
+  
+  .email-text {
+    font-size: 1.5rem;
+    word-break: break-all; /* Agar email panjang tidak jebol */
+  }
+  
+  .social-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .social-btn {
+    justify-content: center;
   }
 }
