@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import "../styles/home.css";
 import CardSwap, { Card } from "../components/CardSwap";
 import Lanyard from "../components/Lanyard";
+import DecryptedText from "../components/DecryptedText";
 
 // Import Semua Icon yang digunakan (Pastikan baris ini lengkap)
 import { 
@@ -14,6 +15,10 @@ import {
 import { 
   SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript, SiTypescript 
 } from "react-icons/si";
+
+import project1Img from "../assets/images/news-portal.png";
+import project2Img from "../assets/images/ifishy.png";
+import project3Img from "../assets/images/web-personal.png";
 
 export default function Home() {
   const marqueeRef = useRef(null);
@@ -61,20 +66,20 @@ export default function Home() {
   const projects = [
     {
       id: 1,
-      title: "News Portal Platform",
+      title: "News Portal - Internship",
       desc: "A modern content management system for news with role-based access control. Built during internship at Winnicode.",
       tech: ["Laravel", "Filament", "TailwindCSS", "MySQL"],
-      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop", 
-      github: "#",
+      image: project1Img,
+      github: "https://github.com/SandyAryadika/Winnicode-LaravelDeveloper",
       demo: "#"
     },
     {
       id: 2,
-      title: "Cloud Capstone API",
+      title: "iFishy - Capstone",
       desc: "Scalable backend architecture for machine learning integration using GCP. Part of Bangkit Academy 2024 final project.",
       tech: ["GCP", "Node.js", "Docker", "Cloud Run"],
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
-      github: "#",
+      image: project2Img,
+      github: "https://github.com/SandyAryadika/Ifishy-C242-PS164",
       demo: "#"
     },
     {
@@ -82,8 +87,8 @@ export default function Home() {
       title: "Personal Portfolio",
       desc: "My own playground website featuring retro-modern design, scroll animations, and interactive UI components.",
       tech: ["React", "Vite", "CSS Modules"],
-      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop",
-      github: "#",
+      image: project3Img,
+      github: "https://github.com/SandyAryadika/portofolio-site",
       demo: "#"
     }
   ];
@@ -160,11 +165,25 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="hero-container" id="home">
         <div className="hero-content">
+          {/* JUDUL UTAMA (KEMBALI STATIS) */}
           <h1>
             Playground for curiosity<br />
             — code, design, and experiments<span style={{color:'#6366f1'}}>.</span>
           </h1>
-          <p>Cloud Computing | Full-stack experiments | Team Lead | UI/UX Enthusiast</p>
+          
+          {/* SUB-JUDUL DENGAN EFEK DECRYPTED */}
+          <div className="hero-subtitle-container">
+            <DecryptedText 
+              text="Cloud Computing | Full-stack experiments | Team Lead | UI/UX Enthusiast"
+              speed={85}             // Kecepatan acak huruf
+              maxIterations={15}     // Berapa kali huruf diacak sebelum jadi teks asli
+              animateOn="view"       // Animasi jalan saat terlihat
+              revealDirection="left" // Animasi mulai dari tengah (Keren!)
+              className="decrypted-sub" // Class untuk styling font
+              repeatInterval={15000} // Ulangi setiap 15.000 ms (15 detik)
+            />
+          </div>
+
           <div className="cta-buttons">
             <a href="#contact" className="btn primary">Hire Me</a>
             <a href="#projects" className="btn secondary">Download CV</a>

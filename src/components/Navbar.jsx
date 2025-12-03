@@ -5,10 +5,11 @@ export default function Navbar() {
     <nav className="glass-nav">
       <ul className="nav-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="#home">About Me</a></li>
-        <li><a href="#projects">Skills</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#projects">Certificate</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certificates">Certificate</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>

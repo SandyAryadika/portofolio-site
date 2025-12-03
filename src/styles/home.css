@@ -7,6 +7,14 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth; 
+}
+
+/* section {
+  scroll-margin-top: 100px; 
+} */
+
 .hero-container {
   height: 100vh;
   display: flex;
@@ -16,6 +24,7 @@
   position: relative;
   z-index: 1;
   margin: -80px;
+  scroll-margin-top: 100px;
 }
 
 .hero-content {
@@ -121,11 +130,34 @@
   transform: translateY(-5px);
 }
 
+/* Wrapper agar posisi margin rapi */
+.hero-subtitle-container {
+  margin-bottom: 3rem; /* Jarak ke tombol */
+  margin-top: 1rem;
+  max-width: 800px;    /* Lebar maksimal agar tidak terlalu panjang */
+  display: flex;
+  justify-content: center;
+}
+
+/* Styling Teks Decrypted */
+.decrypted-sub {
+  /* Gunakan font Sans agar mudah dibaca, atau ganti 'AmstirPixel' jika ingin gaya retro */
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  font-size: 1.3rem;
+  color: #6b7280; /* Warna abu-abu soft */
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.5;
+  
+  /* Menjaga lebar huruf agar tidak bergetar saat animasi */
+  font-variant-numeric: tabular-nums; 
+}
+
 /* --- MARQUEE / RUNNING TEXT SEAMLESS --- */
 .marquee-container {
   width: 100%;
   overflow: hidden; /* Sembunyikan teks yang lewat batas layar */
-  padding-top: 100px; /* Jarak atas bawah */
+  padding-top: 120px; /* Jarak atas bawah */
 }
 
 .marquee-track {
@@ -234,6 +266,7 @@
   padding: 40px 20px;  
   display: flex;
   justify-content: center;
+  scroll-margin-top: 100px;
 }
 
 .skills-tree-container {
@@ -1023,5 +1056,10 @@
   
   .social-btn {
     justify-content: center;
+  }
+
+  .decrypted-sub {
+    font-size: 1rem; /* Kecilkan sedikit di HP */
+    padding: 0 10px;
   }
 }
