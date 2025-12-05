@@ -16,9 +16,13 @@ import {
   SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript, SiTypescript 
 } from "react-icons/si";
 
+// Project Images
 import project1Img from "../assets/images/news-portal.png";
 import project2Img from "../assets/images/ifishy.png";
 import project3Img from "../assets/images/web-personal.png";
+
+// Certificate Images
+import certificate1Img from "../assets/images/pem-web.png";
 
 export default function Home() {
   const marqueeRef = useRef(null);
@@ -116,11 +120,11 @@ export default function Home() {
   const certificates = [
     {
       id: 1,
-      title: "Google Cloud Associate Cloud Engineer",
-      issuer: "Google Cloud",
-      date: "Issued Dec 2024 · Expires Dec 2027",
-      link: "#", 
-      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png"
+      title: "Learn the Basics of Web Programming",
+      issuer: "Dicoding Indonesia",
+      date: "Issued Sep 2024 · Expires Sep 2027",
+      link: "https://www.dicoding.com/certificates/4EXGQL911ZRL", 
+      image: certificate1Img
     },
     {
       id: 2,
@@ -349,8 +353,8 @@ export default function Home() {
                     {/* Header Kartu: Logo & Link */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                       <div style={{ 
-                          width: '50px', 
-                          height: '50px', 
+                          width: '450px', 
+                          height: '310px', 
                           background: '#f9fafb', 
                           borderRadius: '12px', 
                           padding: '8px', 
