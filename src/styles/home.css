@@ -35,29 +35,44 @@ html {
   align-items: flex-start; /* Item di dalam container rata kiri */
   justify-content: center;
   text-align: left;        /* Teks rata kiri */
-  
   width: 100%;
   max-width: 1200px;
   margin-top: -80px; /* Tarik sedikit ke atas */
 }
 
+/* --- Greetings --- */
+.hero-content h2 {
+  font-family: 'AmstirPixel', sans-serif;
+  font-size: 4rem;       /* Perkecil ukuran sapaan agar proporsional */
+  color: #6366f1;        /* Warna Ungu sebagai aksen pembeda */
+  
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: 2px;
+  
+  margin: 0 0 30px 0;    /* Hapus margin atas, beri sedikit jarak bawah */
+  padding-left: 2px;     /* Sedikit indentasi optikal agar lurus dengan huruf besar H1 */
+  
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
 /* --- JUDUL UTAMA (H1) --- */
 .hero-content h1 {
   font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem;
-  line-height: 1;
-  margin-bottom: 1.5rem;
   
-  /* WARNA #1f204a (Hapus gradient lama) */
+  /* Gunakan clamp agar responsif: Minimal 3.5rem, Ideal 8vw, Maksimal 6.5rem */
+  font-size: clamp(3.5rem, 8vw, 6.5rem); 
+  
+  line-height: 1;
+  margin: 0 0 1.5rem 0;  /* Hapus margin atas/kiri/kanan, beri jarak bawah */
+  
   background: none;
   -webkit-text-fill-color: initial;
   color: #1f204a;
   
   font-weight: normal;
   letter-spacing: 2px;
-  
-  /* Reset margin agar rata kiri */
-  margin-left: 0; 
   width: 100%;
 }
 
@@ -111,7 +126,7 @@ html {
 
 .btn.primary:hover {
   background: #6366f1;
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
   box-shadow: 0 15px 30px rgba(31, 32, 74, 0.3);
 }
 
@@ -127,7 +142,7 @@ html {
 .btn.secondary:hover {
   background: #1f204a;
   color: white; /* Saat hover jadi blok warna */
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
 }
 
 /* Wrapper agar posisi margin rapi */

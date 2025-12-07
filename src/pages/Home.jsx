@@ -22,7 +22,12 @@ import project2Img from "../assets/images/ifishy.png";
 import project3Img from "../assets/images/web-personal.png";
 
 // Certificate Images
-import certificate1Img from "../assets/images/pem-web.png";
+import certificate1Img from "../assets/images/javascript.jpg";
+import certificate2Img from "../assets/images/web.jpg";
+import certificate3Img from "../assets/images/cloud-eng.jpg";
+import certificate4Img from "../assets/images/be-cloud.jpg";
+import certificate5Img from "../assets/images/ml-cloud.jpg";
+
 
 export default function Home() {
   const marqueeRef = useRef(null);
@@ -120,27 +125,43 @@ export default function Home() {
   const certificates = [
     {
       id: 1,
-      title: "Learn the Basics of Web Programming",
+      title: "Learn the Basics of JavaScript Programming",
       issuer: "Dicoding Indonesia",
-      date: "Issued Sep 2024 · Expires Sep 2027",
-      link: "https://www.dicoding.com/certificates/4EXGQL911ZRL", 
+      date: "Issued Oct 2024 · Expires Oct 2027",
+      link: "https://www.dicoding.com/certificates/KEXLY08QYZG2", 
       image: certificate1Img
     },
     {
       id: 2,
-      title: "Belajar Fundamental Aplikasi Web",
+      title: "Learn the Basics of Web Programming",
       issuer: "Dicoding Indonesia",
-      date: "Issued Oct 2023 · No Expiration",
-      link: "#", 
-      image: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png"
+      date: "Issued Sep 2024 · Expires Sep 2027",
+      link: "https://www.dicoding.com/certificates/4EXGQL911ZRL", 
+      image: certificate2Img
     },
     {
       id: 3,
-      title: "Menjadi Front-End Web Developer Expert",
+      title: "Becoming a Google Cloud Engineer",
       issuer: "Dicoding Indonesia",
-      date: "Issued Aug 2023 · No Expiration",
-      link: "#",
-      image: "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/commons/new-ui-logo.png"
+      date: "Issued Nov 2024 · Expires Nov 2027",
+      link: "https://www.dicoding.com/certificates/6RPNY9N4QZ2M",
+      image: certificate3Img
+    },
+    {
+      id: 4,
+      title: "Learn to Build Back-End Applications for Beginners with Google Cloud",
+      issuer: "Dicoding Indonesia",
+      date: "Issued Nov 2024 · Expires Nov 2027",
+      link: "https://www.dicoding.com/certificates/1RXY2WLLQXVM",
+      image: certificate4Img
+    },
+    {
+      id: 5,
+      title: "Learn Machine Learning Applications with Google Cloud",
+      issuer: "Dicoding Indonesia",
+      date: "Issued Dec 2024 · Expires Dec 2027",
+      link: "https://www.dicoding.com/certificates/07Z649DLYPQR",
+      image: certificate5Img
     }
   ];
 
@@ -170,9 +191,12 @@ export default function Home() {
       <section className="hero-container" id="home">
         <div className="hero-content">
           {/* JUDUL UTAMA (KEMBALI STATIS) */}
+          <h2>
+            Hi, <span style={{ color: '#1f204a' }}>I'm</span>
+          </h2>
+
           <h1>
-            Playground for curiosity<br />
-            — code, design, and experiments<span style={{color:'#6366f1'}}>.</span>
+            Sandy Aryadika Widodo<span style={{color:'#6366f1'}}>.</span>
           </h1>
           
           {/* SUB-JUDUL DENGAN EFEK DECRYPTED */}
@@ -341,22 +365,22 @@ export default function Home() {
             <div className="certificates-right">
               {/* Gunakan Component CardSwap */}
               <CardSwap
-                width={550}  // Lebar kartu
-                height={420} // Tinggi kartu
-                cardDistance={50} // Jarak geser X
-                verticalDistance={40} // Jarak geser Y
-                delay={4000} // Kecepatan ganti (ms)
-                skewAmount={4}
+                width={550}
+                height={420}
+                cardDistance={20}      
+                verticalDistance={15} 
+                delay={4000}
+                skewAmount={2}         // Kemiringan sedikit saja agar elegan
               >
                 {certificates.map((cert) => (
                   <Card key={cert.id}>
                     {/* Header Kartu: Logo & Link */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                       <div style={{ 
-                          width: '450px', 
-                          height: '310px', 
+                          width: '430px', 
+                          height: '290px', 
                           background: '#f9fafb', 
-                          borderRadius: '12px', 
+                          borderRadius: '10px', 
                           padding: '8px', 
                           border: '1px solid #f3f4f6',
                           display: 'flex',
