@@ -11,7 +11,7 @@ import {
   FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, 
   FaGithub, FaExternalLinkAlt, FaArrowRight, FaGraduationCap, 
   FaAward, FaEnvelope, FaLinkedin, FaInstagram, FaCopy, FaCheck,
-  FaCertificate
+  SiCss3
 } from "react-icons/fa";
 import { 
   SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript, SiTypescript 
@@ -76,18 +76,22 @@ export default function Home() {
   const projects = [
     {
       id: 1,
-      title: "News Portal - Internship",
-      desc: "A modern content management system for news with role-based access control. Built during internship at Winnicode.",
-      tech: ["Laravel", "Filament", "TailwindCSS", "MySQL"],
+      title: "Web Developer Intern", // Judul Role
+      // Deskripsi ringkas mencakup Perusahaan, Waktu, dan Tanggung Jawab Utama
+      desc: "Internship at PT. Winnicode Garuda Teknologi (Feb - Jul 2025). Led the end-to-end development of a production-ready news portal. Responsible for UI/UX design, core feature implementation, and system testing using industry best practices.",
+      // Tech stack gabungan tools & skill penting
+      tech: ["Laravel", "Filament", "TailwindCSS", "MySQL", "Git", "UI/UX"],
       image: project1Img,
       github: "https://github.com/SandyAryadika/Winnicode-LaravelDeveloper",
       demo: "#"
     },
     {
-      id: 2,
-      title: "iFishy - Capstone",
-      desc: "Scalable backend architecture for machine learning integration using GCP. Part of Bangkit Academy 2024 final project.",
-      tech: ["GCP", "Node.js", "Docker", "Cloud Run"],
+      id: 1,
+      title: "Cloud Computing Cohort", // Judul Role
+      // Deskripsi ringkas mencakup Perusahaan, Waktu, dan Tanggung Jawab Utama
+      desc: "Team Leader in the Bangkit Academy Capstone Project (Sep 2024 – Jan 2025). Coordinated cross-path collaboration, managed task planning, ensured component integration, and guided cloud architecture while resolving weekly technical and non-technical issues.",
+      // Tech stack gabungan tools & skill penting
+      tech: ["Cloud Computing", "Team Leadership", "Google Cloud Platform", "Microservices", "System Integration", "Project Management"],
       image: project2Img,
       github: "https://github.com/SandyAryadika/Ifishy-C242-PS164",
       demo: "#"
@@ -222,7 +226,14 @@ export default function Home() {
 
           <div className="cta-buttons">
             <a href="#contact" className="btn primary">Hire Me</a>
-            <a href="#projects" className="btn secondary">Download CV</a>
+            <a 
+              href="https://drive.google.com/file/d/14tCYpABd1GXzgA2-dTJiXh-83X4fkEBc/view?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn secondary"
+            >
+              Download CV
+            </a>
           </div>
         </div>
       </section>
@@ -315,7 +326,6 @@ export default function Home() {
                     <h3>{project.title}</h3>
                     <div className="card-links-mini">
                       <a href={project.github} target="_blank" rel="noreferrer"><FaGithub/></a>
-                      <a href={project.demo} target="_blank" rel="noreferrer"><FaExternalLinkAlt/></a>
                     </div>
                   </div>
                   <p>{project.desc}</p>
@@ -474,7 +484,7 @@ export default function Home() {
         </div>
 
         <footer className="footer">
-          <p>© {new Date().getFullYear()} Sandy Aryadika. Built with React.</p>
+          <p>© {new Date().getFullYear()} Sandy Aryadika. Built with React / Experiments</p>
         </footer>
       </section>
 
