@@ -1,0 +1,24 @@
+/* src/components/TextType.css */
+.text-type {
+  display: inline-block;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.text-type__cursor {
+  margin-left: 0.1rem;
+  display: inline-block;
+  opacity: 1;
+  color: #6366f1; /* Warna Ungu */
+  font-weight: 400;
+  animation: blink 1s step-end infinite;
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

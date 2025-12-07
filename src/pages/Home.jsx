@@ -4,6 +4,7 @@ import "../styles/home.css";
 import CardSwap, { Card } from "../components/CardSwap";
 import Lanyard from "../components/Lanyard";
 import DecryptedText from "../components/DecryptedText";
+import TextType from "../components/TextType";
 
 // Import Semua Icon yang digunakan (Pastikan baris ini lengkap)
 import { 
@@ -195,8 +196,15 @@ export default function Home() {
             Hi, <span style={{ color: '#1f204a' }}>I'm</span>
           </h2>
 
+          {/* JUDUL UTAMA (H1) DENGAN EFEK TYPE */}
           <h1>
-            Sandy Aryadika Widodo<span style={{color:'#6366f1'}}>.</span>
+            <TextType 
+              text={["Sandy Aryadika Widodo."]} 
+              typingSpeed={100}
+              pauseDuration={2000}
+              showCursor={true}
+              cursorCharacter="|"
+            />
           </h1>
           
           {/* SUB-JUDUL DENGAN EFEK DECRYPTED */}
