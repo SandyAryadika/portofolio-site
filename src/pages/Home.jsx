@@ -5,16 +5,21 @@ import CardSwap, { Card } from "../components/CardSwap";
 import Lanyard from "../components/Lanyard";
 import DecryptedText from "../components/DecryptedText";
 import TextType from "../components/TextType";
+import ScrollReveal from "../components/ScrollReveal";
 
-// Import Semua Icon yang digunakan (Pastikan baris ini lengkap)
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 import { 
   FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, 
   FaGithub, FaExternalLinkAlt, FaArrowRight, FaGraduationCap, 
   FaEnvelope, FaLinkedin, FaInstagram, FaCopy, FaCheck,
-  FaCode, FaCloud 
+  FaCode, FaCloud, FaPython
 } from "react-icons/fa";
 
-// Import Icon SimpleIcons (Hapus yang bikin error)
 import { 
   SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript
 } from "react-icons/si";
@@ -68,9 +73,60 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
+    // 2. Animasi Skills (ARAH SCROLL MENENTUKAN URUTAN)
+    const skills = document.querySelectorAll(".skill-branch");
+    let skillTrigger; // Simpan reference trigger untuk dibersihkan nanti
+    
+    if (skills.length > 0) {
+      // Set kondisi awal: Sembunyi & geser kanan
+      gsap.set(skills, { opacity: 0, x: 50 });
+
+      skillTrigger = ScrollTrigger.create({
+        trigger: ".skills-tree-container",
+        start: "top 85%", // Mulai saat bagian atas elemen masuk 80% viewport
+        end: "bottom 20%", // Selesai saat bagian bawah elemen di 20% viewport
+        
+        // SCROLL KE BAWAH (Masuk Viewport)
+        onEnter: () => {
+          gsap.to(skills, {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            stagger: 0.1, // Positif: Urutan 1 -> Akhir
+            ease: "back.out(1.7)",
+            overwrite: "auto"
+          });
+        },
+        
+        // SCROLL KE BAWAH (Keluar Viewport) -> Reset
+        onLeave: () => {
+          gsap.to(skills, { opacity: 0, x: 50, duration: 0.3, overwrite: "auto" });
+        },
+
+        // SCROLL KE ATAS (Masuk Viewport Kembali)
+        onEnterBack: () => {
+          gsap.to(skills, {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            stagger: -0.1, // Negatif: Urutan Akhir -> 1 (Bawah ke Atas)
+            ease: "back.out(1.7)",
+            overwrite: "auto"
+          });
+        },
+
+        // SCROLL KE ATAS (Keluar Viewport) -> Reset
+        onLeaveBack: () => {
+          gsap.to(skills, { opacity: 0, x: 50, duration: 0.3, overwrite: "auto" });
+        }
+      });
+    }
+    
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutId);
+      if (skillTrigger) skillTrigger.kill(); // Bersihkan trigger khusus skill
+      ScrollTrigger.getAll().forEach(t => t.kill()); // Bersihkan sisa trigger lain
     };
   }, []);
 
@@ -251,11 +307,27 @@ export default function Home() {
       {/* --- ABOUT SECTION --- */}
       <section className="about-section" id="about">
         <div className="about-content">
-          <h2 className="section-title">About Me</h2>
+          <h2 className="section-title">
+            <ScrollReveal 
+              baseOpacity={0} 
+              enableBlur={true} 
+              baseRotation={10} 
+              blurStrength={5}
+              stagger={0.1} // Sedikit lebih lambat antar kata biar dramatis
+            >
+              About Me
+            </ScrollReveal>
+          </h2>
           <div className="about-grid">
             
-            {/* Bagian Teks (Kiri) */}
-            <div className="about-text">
+            {/* Bagian Teks (Kiri) - UBAH div MENJADI motion.div */}
+            <motion.div 
+              className="about-text"
+              initial={{ opacity: 0, x: -100 }} // Keadaan awal: Transparan & geser ke kiri 100px
+              whileInView={{ opacity: 1, x: 0 }} // Keadaan akhir: Terlihat & posisi normal
+              transition={{ duration: 0.8, ease: "easeOut" }} // Durasi animasi 0.8 detik
+              viewport={{ once: false, amount: 0.3 }} // Animasi jalan sekali saat 30% elemen terlihat
+            >
               <p>
                 I am an undergraduate student driven by the intersection of <b>Cloud Computing</b>, <b>Web Development</b>, and <b>Product Design</b>. I believe that technology isn't just about writing code—it's about solving real problems with user-centered thinking.
               </p>
@@ -268,14 +340,12 @@ export default function Home() {
               <div style={{ marginTop: '20px', fontFamily: "'AmstirPixel', sans-serif", fontSize: '1.5rem', color: '#6366f1' }}>
                 — Code that even future-me can’t understand.
               </div>
-            </div>
+            </motion.div>
             
-            {/* Bagian Gambar (Kanan) - DISINI POSISI LANYARD */}
+            {/* Bagian Gambar (Kanan) - Biarkan Tetap */}
             <div className="about-image" style={{ height: '500px', position: 'relative', zIndex: 10 }}>
-              {/* USAGE LANYARD */}
               <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
             </div>
-
           </div>
         </div>
       </section>
@@ -289,6 +359,9 @@ export default function Home() {
             {/* CORE & LANGUAGES */}
             <div className="skill-branch">
               <div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div>
+            </div>
+            <div className="skill-branch">
+              <div className="skill-pill"><FaPython className="icon py"/> Python</div>
             </div>
             <div className="skill-branch">
               <div className="skill-pill"><FaPhp className="icon php"/> PHP</div>

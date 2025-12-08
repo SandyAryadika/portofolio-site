@@ -205,6 +205,14 @@ html {
   flex-shrink: 0;
 }
 
+.custom-scroll-text {
+  /* Ganti dengan font pilihan Anda */
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  font-weight: 800; /* Tebal */
+  color: #1f204a;   /* Warna Navy */
+  font-size: 5rem;  /* Ukuran Besar */
+}
+
 /* ANIMASI GERAK KE KANAN TANPA JEDA */
 @keyframes scrollSeamlessLeft {
   from {
@@ -959,6 +967,10 @@ html {
     .about-grid {
     grid-template-columns: 1fr; /* Jadi 1 kolom */
     gap: 2rem;
+  }
+
+  .custom-scroll-text {
+    font-size: 2.5rem !important; /* Paksa kecil di HP */
   }
   
   .about-image {

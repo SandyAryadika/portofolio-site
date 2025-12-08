@@ -1,0 +1,20 @@
+/* src/components/ScrollReveal.css */
+
+.scroll-reveal {
+  /* Biarkan inline-block atau block tergantung kebutuhan, 
+     tapi untuk judul di dalam h2, block aman */
+  display: block; 
+}
+
+.scroll-reveal-text {
+  /* HAPUS style font spesifik di sini agar inherit dari h2 */
+  /* Font akan mengikuti parent-nya (AmstirPixel dari .section-title) */
+  display: inline-block;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+  /* Pastikan spasi antar kata terlihat */
+  white-space: pre-wrap; 
+}
