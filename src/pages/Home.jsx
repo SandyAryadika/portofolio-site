@@ -40,7 +40,7 @@ import certificate5Img from "../assets/images/ml-cloud.jpg";
 export default function Home() {
   const marqueeRef = useRef(null);
 
-  // TEXT MARQUEE
+  // 1. Setup Animasi Skew Marquee
   const textContent = "WELCOME\u00A0TO\u00A0MY\u00A0PERSONAL\u00A0WEBSITE\u00A0";
   const repeatedText = Array(4).fill(textContent).join(""); 
 
@@ -123,6 +123,86 @@ export default function Home() {
       });
     }
     
+    // 3. ANIMASI PROJECTS (BARU: Staggered Fade Up)
+    // Gunakan .batch() karena ini Grid, lebih efisien
+    gsap.set(".project-card", { opacity: 0, y: 50 }); // Set awal: Turun 50px & Transparan
+
+    ScrollTrigger.batch(".project-card", {
+      start: "top 85%",
+      end: "bottom 15%",
+      // Saat masuk layar: Muncul & Naik
+      onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true}),
+      // Saat keluar layar: Reset (Turun & Hilang)
+      onLeave: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true}),
+      // Saat masuk lagi dari bawah: Muncul & Naik lagi
+      onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true}),
+      // Saat keluar ke atas: Reset
+      onLeaveBack: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true}),
+    });
+
+    // 4. ANIMASI EDUCATION (TIMELINE SLIDE FROM RIGHT) [UPDATED]
+    const eduItems = document.querySelectorAll(".edu-item");
+    if (eduItems.length > 0) {
+      // Set kondisi awal: Geser ke kanan (x: 100) dan transparan
+      gsap.set(eduItems, { opacity: 0, x: 100 }); 
+
+      ScrollTrigger.batch(eduItems, {
+        start: "top 85%", 
+        end: "bottom 15%",
+        
+        // SCROLL KE BAWAH (Normal): Muncul berurutan dari atas ke bawah
+        onEnter: batch => gsap.to(batch, {
+          opacity: 1, 
+          x: 0, 
+          stagger: 0.2, 
+          duration: 1, 
+          ease: "power2.out", 
+          overwrite: true
+        }),
+        
+        // Keluar layar (ke atas): Reset
+        onLeave: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true }),
+        
+        // SCROLL KE ATAS (Balik): Muncul berurutan dari BAWAH ke ATAS
+        onEnterBack: batch => gsap.to(batch, { 
+          opacity: 1, 
+          x: 0, 
+          stagger: -0.2, // <--- KUNCI: Negatif stagger membalik urutan animasi
+          duration: 1, 
+          ease: "power2.out", 
+          overwrite: true 
+        }),
+        
+        // Keluar layar (ke bawah): Reset
+        onLeaveBack: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true }),
+      });
+    }
+
+    // 5. ANIMASI CONTACT (POP UP / BOUNCE) [BARU]
+    const contactElements = document.querySelectorAll(".contact-container > *");
+    if (contactElements.length > 0) {
+      // Set awal: Kecil (scale 0.8), Turun (y 50), dan Transparan
+      gsap.set(contactElements, { opacity: 0, y: 50, scale: 0.9 });
+
+      ScrollTrigger.batch(contactElements, {
+        start: "top 90%",
+        end: "bottom 10%",
+        // Masuk: Membesar (Scale 1) dengan efek membal (back.out)
+        onEnter: batch => gsap.to(batch, {
+          opacity: 1, 
+          y: 0, 
+          scale: 1, 
+          stagger: 0.2, 
+          duration: 0.8, 
+          ease: "back.out(1.7)", // Efek membal "Pop"
+          overwrite: true
+        }),
+        onLeave: batch => gsap.set(batch, { opacity: 0, y: 50, scale: 0.9, overwrite: true }),
+        onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, scale: 1, stagger: 0.2, duration: 0.8, ease: "back.out(1.7)", overwrite: true }),
+        onLeaveBack: batch => gsap.set(batch, { opacity: 0, y: 50, scale: 0.9, overwrite: true }),
+      });
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (skillTrigger) skillTrigger.kill(); // Bersihkan trigger khusus skill
@@ -397,8 +477,31 @@ export default function Home() {
       <section className="projects-section" id="projects">
         <div className="projects-container">
           <div className="section-header">
-            <h2 className="section-title">Selected Works</h2>
-            <p className="section-subtitle">A collection of projects I've worked on.</p>
+            {/* Animasi Judul sama seperti About Me */}
+            <h2 className="section-title">
+              <ScrollReveal 
+                baseOpacity={0} 
+                enableBlur={true} 
+                baseRotation={5} 
+                blurStrength={10}
+                stagger={0.1}
+              >
+                Selected Works
+              </ScrollReveal>
+            </h2>
+            
+            {/* Animasi Subtitle (Fade In Simple) */}
+            <p className="section-subtitle">
+              <ScrollReveal 
+                baseOpacity={0} 
+                enableBlur={true} 
+                baseRotation={0} // Tidak perlu rotasi untuk subtitle biar mudah dibaca
+                blurStrength={5}
+                stagger={0.02}   // Lebih cepat
+              >
+                A collection of projects & experiences.
+              </ScrollReveal>
+            </p>
           </div>
           <div className="projects-grid">
             {projects.map((project) => (
@@ -431,8 +534,29 @@ export default function Home() {
       <section className="education-section" id="education">
         <div className="education-container">
           <div className="education-header">
-            <h2 className="section-title">Education</h2>
-            <p>My academic journey and milestones.</p>
+            <h2 className="section-title">
+              <ScrollReveal 
+                baseOpacity={0} 
+                enableBlur={true} 
+                baseRotation={5} 
+                blurStrength={10}
+                stagger={0.1}
+              >
+                Education
+              </ScrollReveal>
+            </h2>
+
+            <p className="section-subtitle">
+              <ScrollReveal 
+                baseOpacity={0} 
+                enableBlur={true} 
+                baseRotation={0} // Tidak perlu rotasi untuk subtitle biar mudah dibaca
+                blurStrength={5}
+                stagger={0.02}   // Lebih cepat
+              >
+                My academic journey and milestones.
+              </ScrollReveal>
+            </p>
           </div>
           <div className="education-list">
             {educationData.map((item) => (
