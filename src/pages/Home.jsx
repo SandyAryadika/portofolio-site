@@ -135,20 +135,16 @@ export default function Home() {
     {
       id: 1,
       title: "Web Developer Intern", // Judul Role
-      // Deskripsi ringkas mencakup Perusahaan, Waktu, dan Tanggung Jawab Utama
-      desc: "Internship at PT. Winnicode Garuda Teknologi (Feb - Jul 2025). Led the end-to-end development of a production-ready news portal. Responsible for UI/UX design, core feature implementation, and system testing using industry best practices.",
-      // Tech stack gabungan tools & skill penting
+      desc: "During my internship at Winnicode Garuda Teknologi (Feb - Jul 2025), I helped develop a production-ready news portal, handling user flows, UI/UX, core features, and testing. Working with a mentor strengthened my web development skills and problem-solving.",
       tech: ["Laravel", "Filament", "TailwindCSS", "MySQL", "Git", "UI/UX"],
       image: project1Img,
       github: "https://github.com/SandyAryadika/Winnicode-LaravelDeveloper",
       demo: "#"
     },
     {
-      id: 1,
-      title: "Cloud Computing Cohort", // Judul Role
-      // Deskripsi ringkas mencakup Perusahaan, Waktu, dan Tanggung Jawab Utama
+      id: 2,
+      title: "Cloud Computing Cohort", // Judul Role      
       desc: "Team Leader in the Bangkit Academy Capstone Project (Sep 2024 – Jan 2025). Coordinated cross-path collaboration, managed task planning, ensured component integration, and guided cloud architecture while resolving weekly technical and non-technical issues.",
-      // Tech stack gabungan tools & skill penting
       tech: ["Cloud Computing", "Team Leadership", "Google Cloud Platform", "Microservices", "System Integration", "Project Management"],
       image: project2Img,
       github: "https://github.com/SandyAryadika/Ifishy-C242-PS164",
@@ -171,16 +167,16 @@ export default function Home() {
       id: 1,
       year: "2019 - 2022",
       title: "Multimedia",
-      place: "SMK Negeri 1 Cerme",
-      desc: "Focused on visual production and creative content, including graphic design, digital illustration, and photo editing. Completed an internship as a production assistant, responsible for designing promotional materials, brand assets, and marketing visuals using Adobe Illustrator and Adobe Photoshop. (Final Grade: 85.87/100)",
+      place: "SMK Negeri 1 Cerme, Gresik",
+      desc: "Focused on visual production, including graphic design, digital illustration, and photo editing. Completed an internship as a Production Assistant, responsible for designing promotional materials, brand assets, and marketing visuals using Adobe Illustrator and Adobe Photoshop. Final Grade: 85.87/100.",
       icon: <FaGraduationCap />
     },
     {
       id: 2,
       year: "2022 - Present",
       title: "Informatics Engineering",
-      place: "Universitas Pembangunan Nasional Veteran Jawa Timur",
-      desc: "Actively involved in the campus tech ecosystem by joining the Google Developer Student Clubs (GDSC) for one year, collaborating on digital product development and learning modern technologies. Built a mini e-commerce platform as part of the competency exam (LSP BSNP). (Current GPA: 3.8/4.00)",
+      place: "Universitas Pembangunan Nasional Veteran Jawa Timur, Surabaya",
+      desc: "Actively involved in the campus tech ecosystem through the Google Developer Student Clubs (GDSC), collaborating on digital product development and exploring modern technologies. Developed a mini e-commerce platform as part of the LSP BSNP competency exam. Current GPA: 3.8/4.00.",
       icon: <FaGraduationCap />
     },
   ];
@@ -285,7 +281,7 @@ export default function Home() {
           <div className="cta-buttons">
             <a href="#contact" className="btn primary">Hire Me</a>
             <a 
-              href="https://drive.google.com/file/d/14tCYpABd1GXzgA2-dTJiXh-83X4fkEBc/view?usp=sharing" 
+              href="https://drive.google.com/uc?export=download&id=14tCYpABd1GXzgA2-dTJiXh-83X4fkEBc"
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn secondary"
