@@ -10,11 +10,13 @@ import TextType from "../components/TextType";
 import { 
   FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, 
   FaGithub, FaExternalLinkAlt, FaArrowRight, FaGraduationCap, 
-  FaAward, FaEnvelope, FaLinkedin, FaInstagram, FaCopy, FaCheck,
-  SiCss3
+  FaEnvelope, FaLinkedin, FaInstagram, FaCopy, FaCheck,
+  FaCode, FaCloud 
 } from "react-icons/fa";
+
+// Import Icon SimpleIcons (Hapus yang bikin error)
 import { 
-  SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript, SiTypescript 
+  SiTailwindcss, SiGooglecloud, SiMysql, SiJavascript
 } from "react-icons/si";
 
 // Project Images
@@ -278,32 +280,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SKILLS SECTION (VERTICAL TREE LAYOUT) --- */}
+      {/* SKILLS SECTION */}
       <section className="skills-section" id="skills">
         <div className="skills-tree-container">
-
-          <div className="skills-left">
-            <h2>Tech<br/>Stack</h2>
-          </div>
-
+          <div className="skills-left"><h2>Tech<br/>Stack</h2></div>
+          
           <div className="skills-right">
-            {/* FRONTEND */}
-            <div className="skill-branch"><div className="skill-pill"><FaReact className="icon react"/> React</div></div>
-            <div className="skill-branch"><div className="skill-pill"><SiTailwindcss className="icon tailwind"/> Tailwind</div></div>
-            <div className="skill-branch"><div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div></div>
-            <div className="skill-branch"><div className="skill-pill"><SiTypescript className="icon ts"/> TypeScript</div></div>
+            {/* CORE & LANGUAGES */}
+            <div className="skill-branch">
+              <div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div>
+            </div>
+            <div className="skill-branch">
+              <div className="skill-pill"><FaPhp className="icon php"/> PHP</div>
+            </div>
 
-            {/* BACKEND */}
-            <div className="skill-branch"><div className="skill-pill"><FaLaravel className="icon laravel"/> Laravel</div></div>
-            <div className="skill-branch"><div className="skill-pill"><FaPhp className="icon php"/> PHP</div></div>
-            <div className="skill-branch"><div className="skill-pill"><SiMysql className="icon sql"/> MySQL</div></div>
+            {/* FRAMEWORK & DB */}
+            <div className="skill-branch">
+              <div className="skill-pill"><FaLaravel className="icon laravel"/> Laravel</div>
+            </div>
+            <div className="skill-branch">
+              <div className="skill-pill"><SiMysql className="icon sql"/> MySQL</div>
+            </div>
 
-            {/* TOOLS */}
-            <div className="skill-branch"><div className="skill-pill"><SiGooglecloud className="icon gcp"/> GCP</div></div>
-            <div className="skill-branch"><div className="skill-pill"><FaGitAlt className="icon git"/> Git</div></div>
-            <div className="skill-branch"><div className="skill-pill"><FaFigma className="icon figma"/> Figma</div></div>
+            {/* TOOLS, CLOUD, IDE */}
+            <div className="skill-branch">
+              <div className="skill-pill"><FaGitAlt className="icon git"/> Git</div>
+            </div>
+            <div className="skill-branch">
+              <div className="skill-pill"><FaFigma className="icon figma"/> Figma</div>
+            </div>
+            <div className="skill-branch">
+              <div className="skill-pill"><SiGooglecloud className="icon gcp"/> GCP</div>
+            </div>
+            {/* Menggunakan Icon FaCode (Aman) untuk VS Code */}
+            <div className="skill-branch">
+              <div className="skill-pill"><FaCode className="icon vscode"/> Visual Studio</div>
+            </div>
+            {/* Menggunakan Icon FaCloud (Aman) untuk Google Colab */}
+            <div className="skill-branch">
+              <div className="skill-pill"><FaCloud className="icon colab"/> Google Colab</div>
+            </div>
           </div>
-
         </div>
       </section>
 
