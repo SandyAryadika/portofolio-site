@@ -11,8 +11,6 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 import { 
   FaReact, FaLaravel, FaPhp, FaGitAlt, FaFigma, 
   FaGithub, FaExternalLinkAlt, FaArrowRight, FaGraduationCap, 
@@ -36,185 +34,22 @@ import certificate3Img from "../assets/images/cloud-eng.jpg";
 import certificate4Img from "../assets/images/be-cloud.jpg";
 import certificate5Img from "../assets/images/ml-cloud.jpg";
 
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const marqueeRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const email = "aryadikawidodo0@gmail.com";
 
-  // 1. Setup Animasi Skew Marquee
+  // --- DATA ---
   const textContent = "WELCOME\u00A0TO\u00A0MY\u00A0PERSONAL\u00A0WEBSITE\u00A0";
-  const repeatedText = Array(4).fill(textContent).join(""); 
+  const repeatedText = Array(4).fill(textContent).join("");
 
-  // LOGIKA EFEK SKEW (JELLY)
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let timeoutId;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const velocity = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
-
-      let skewAmount = velocity * -0.5; 
-      if (skewAmount > 30) skewAmount = 30;
-      if (skewAmount < -30) skewAmount = -30;
-
-      if (marqueeRef.current) {
-        marqueeRef.current.style.transform = `skewX(${skewAmount}deg)`;
-        marqueeRef.current.style.transition = 'transform 0.05s linear';
-      }
-
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        if (marqueeRef.current) {
-          marqueeRef.current.style.transition = 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          marqueeRef.current.style.transform = `skewX(0deg)`;
-        }
-      }, 50); 
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // 2. Animasi Skills (ARAH SCROLL MENENTUKAN URUTAN)
-    const skills = document.querySelectorAll(".skill-branch");
-    let skillTrigger; // Simpan reference trigger untuk dibersihkan nanti
-    
-    if (skills.length > 0) {
-      // Set kondisi awal: Sembunyi & geser kanan
-      gsap.set(skills, { opacity: 0, x: 50 });
-
-      skillTrigger = ScrollTrigger.create({
-        trigger: ".skills-tree-container",
-        start: "top 85%", // Mulai saat bagian atas elemen masuk 80% viewport
-        end: "bottom 20%", // Selesai saat bagian bawah elemen di 20% viewport
-        
-        // SCROLL KE BAWAH (Masuk Viewport)
-        onEnter: () => {
-          gsap.to(skills, {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-            stagger: 0.1, // Positif: Urutan 1 -> Akhir
-            ease: "back.out(1.7)",
-            overwrite: "auto"
-          });
-        },
-        
-        // SCROLL KE BAWAH (Keluar Viewport) -> Reset
-        onLeave: () => {
-          gsap.to(skills, { opacity: 0, x: 50, duration: 0.3, overwrite: "auto" });
-        },
-
-        // SCROLL KE ATAS (Masuk Viewport Kembali)
-        onEnterBack: () => {
-          gsap.to(skills, {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-            stagger: -0.1, // Negatif: Urutan Akhir -> 1 (Bawah ke Atas)
-            ease: "back.out(1.7)",
-            overwrite: "auto"
-          });
-        },
-
-        // SCROLL KE ATAS (Keluar Viewport) -> Reset
-        onLeaveBack: () => {
-          gsap.to(skills, { opacity: 0, x: 50, duration: 0.3, overwrite: "auto" });
-        }
-      });
-    }
-    
-    // 3. ANIMASI PROJECTS (BARU: Staggered Fade Up)
-    // Gunakan .batch() karena ini Grid, lebih efisien
-    gsap.set(".project-card", { opacity: 0, y: 50 }); // Set awal: Turun 50px & Transparan
-
-    ScrollTrigger.batch(".project-card", {
-      start: "top 85%",
-      end: "bottom 15%",
-      // Saat masuk layar: Muncul & Naik
-      onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true}),
-      // Saat keluar layar: Reset (Turun & Hilang)
-      onLeave: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true}),
-      // Saat masuk lagi dari bawah: Muncul & Naik lagi
-      onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true}),
-      // Saat keluar ke atas: Reset
-      onLeaveBack: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true}),
-    });
-
-    // 4. ANIMASI EDUCATION (TIMELINE SLIDE FROM RIGHT) [UPDATED]
-    const eduItems = document.querySelectorAll(".edu-item");
-    if (eduItems.length > 0) {
-      // Set kondisi awal: Geser ke kanan (x: 100) dan transparan
-      gsap.set(eduItems, { opacity: 0, x: 100 }); 
-
-      ScrollTrigger.batch(eduItems, {
-        start: "top 85%", 
-        end: "bottom 15%",
-        
-        // SCROLL KE BAWAH (Normal): Muncul berurutan dari atas ke bawah
-        onEnter: batch => gsap.to(batch, {
-          opacity: 1, 
-          x: 0, 
-          stagger: 0.2, 
-          duration: 1, 
-          ease: "power2.out", 
-          overwrite: true
-        }),
-        
-        // Keluar layar (ke atas): Reset
-        onLeave: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true }),
-        
-        // SCROLL KE ATAS (Balik): Muncul berurutan dari BAWAH ke ATAS
-        onEnterBack: batch => gsap.to(batch, { 
-          opacity: 1, 
-          x: 0, 
-          stagger: -0.2, // <--- KUNCI: Negatif stagger membalik urutan animasi
-          duration: 1, 
-          ease: "power2.out", 
-          overwrite: true 
-        }),
-        
-        // Keluar layar (ke bawah): Reset
-        onLeaveBack: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true }),
-      });
-    }
-
-    // 5. ANIMASI CONTACT (POP UP / BOUNCE) [BARU]
-    const contactElements = document.querySelectorAll(".contact-container > *");
-    if (contactElements.length > 0) {
-      // Set awal: Kecil (scale 0.8), Turun (y 50), dan Transparan
-      gsap.set(contactElements, { opacity: 0, y: 50, scale: 0.9 });
-
-      ScrollTrigger.batch(contactElements, {
-        start: "top 90%",
-        end: "bottom 10%",
-        // Masuk: Membesar (Scale 1) dengan efek membal (back.out)
-        onEnter: batch => gsap.to(batch, {
-          opacity: 1, 
-          y: 0, 
-          scale: 1, 
-          stagger: 0.2, 
-          duration: 0.8, 
-          ease: "back.out(1.7)", // Efek membal "Pop"
-          overwrite: true
-        }),
-        onLeave: batch => gsap.set(batch, { opacity: 0, y: 50, scale: 0.9, overwrite: true }),
-        onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, scale: 1, stagger: 0.2, duration: 0.8, ease: "back.out(1.7)", overwrite: true }),
-        onLeaveBack: batch => gsap.set(batch, { opacity: 0, y: 50, scale: 0.9, overwrite: true }),
-      });
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (skillTrigger) skillTrigger.kill(); // Bersihkan trigger khusus skill
-      ScrollTrigger.getAll().forEach(t => t.kill()); // Bersihkan sisa trigger lain
-    };
-  }, []);
-
-  // DATA PROJECTS
   const projects = [
     {
       id: 1,
-      title: "Web Developer Intern", // Judul Role
+      title: "Web Developer Intern",
       desc: "During my internship at Winnicode Garuda Teknologi (Feb - Jul 2025), I helped develop a production-ready news portal, handling user flows, UI/UX, core features, and testing. Working with a mentor strengthened my web development skills and problem-solving.",
       tech: ["Laravel", "Filament", "TailwindCSS", "MySQL", "Git", "UI/UX"],
       image: project1Img,
@@ -223,7 +58,7 @@ export default function Home() {
     },
     {
       id: 2,
-      title: "Cloud Computing Cohort", // Judul Role      
+      title: "Cloud Computing Cohort",    
       desc: "Team Leader in the Bangkit Academy Capstone Project (Sep 2024 – Jan 2025). Coordinated cross-path collaboration, managed task planning, ensured component integration, and guided cloud architecture while resolving weekly technical and non-technical issues.",
       tech: ["Cloud Computing", "Team Leadership", "Google Cloud Platform", "Microservices", "System Integration", "Project Management"],
       image: project2Img,
@@ -241,7 +76,6 @@ export default function Home() {
     }
   ];
 
-  // DATA EDUCATION
   const educationData = [
     {
       id: 1,
@@ -304,24 +138,118 @@ export default function Home() {
     }
   ];
 
-  // STATE COPY EMAIL
-  const [copied, setCopied] = useState(false);
-  const email = "aryadikawidodo0@gmail.com"; 
-
+  // --- HANDLERS ---
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); 
   };
 
-  const handleScrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // --- EFFECTS ---
 
-  // ----------------------------------------------------------------------
+  // Responsiveness Check
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Animations (Skew, ScrollTrigger)
+  useEffect(() => {
+    // 1. Skew Marquee Logic
+    let lastScrollY = window.scrollY;
+    let timeoutId;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const velocity = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      let skewAmount = velocity * -0.5; 
+      if (skewAmount > 30) skewAmount = 30;
+      if (skewAmount < -30) skewAmount = -30;
+
+      if (marqueeRef.current) {
+        marqueeRef.current.style.transform = `skewX(${skewAmount}deg)`;
+        marqueeRef.current.style.transition = 'transform 0.05s linear';
+      }
+
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        if (marqueeRef.current) {
+          marqueeRef.current.style.transition = 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          marqueeRef.current.style.transform = `skewX(0deg)`;
+        }
+      }, 50); 
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 2. Skills Animation
+    const skills = document.querySelectorAll(".skill-branch");
+    let skillTrigger;
+    
+    if (skills.length > 0) {
+      gsap.set(skills, { opacity: 0, x: 50 });
+
+      skillTrigger = ScrollTrigger.create({
+        trigger: ".skills-tree-container",
+        start: "top 85%",
+        end: "bottom 20%",
+        onEnter: () => gsap.to(skills, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)", overwrite: "auto" }),
+        onLeave: () => gsap.to(skills, { opacity: 0, x: 50, duration: 0.3, overwrite: "auto" }),
+        onEnterBack: () => gsap.to(skills, { opacity: 1, x: 0, duration: 0.5, stagger: -0.1, ease: "back.out(1.7)", overwrite: "auto" }),
+        onLeaveBack: () => gsap.to(skills, { opacity: 0, x: 50, duration: 0.3, overwrite: "auto" })
+      });
+    }
+    
+    // 3. Projects Animation
+    gsap.set(".project-card", { opacity: 0, y: 50 });
+
+    ScrollTrigger.batch(".project-card", {
+      start: "top 85%",
+      end: "bottom 15%",
+      onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true}),
+      onLeave: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true}),
+      onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true}),
+      onLeaveBack: batch => gsap.set(batch, {opacity: 0, y: 50, overwrite: true}),
+    });
+
+    // 4. Education Animation
+    const eduItems = document.querySelectorAll(".edu-item");
+    if (eduItems.length > 0) {
+      gsap.set(eduItems, { opacity: 0, x: 100 }); 
+      ScrollTrigger.batch(eduItems, {
+        start: "top 85%", 
+        end: "bottom 15%",
+        onEnter: batch => gsap.to(batch, { opacity: 1, x: 0, stagger: 0.2, duration: 1, ease: "power2.out", overwrite: true }),
+        onLeave: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true }),
+        onEnterBack: batch => gsap.to(batch, { opacity: 1, x: 0, stagger: -0.2, duration: 1, ease: "power2.out", overwrite: true }),
+        onLeaveBack: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true }),
+      });
+    }
+
+    // 5. Contact Animation
+    const contactElements = document.querySelectorAll(".contact-container > *");
+    if (contactElements.length > 0) {
+      gsap.set(contactElements, { opacity: 0, y: 50, scale: 0.9 });
+      ScrollTrigger.batch(contactElements, {
+        start: "top 90%",
+        end: "bottom 10%",
+        onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, scale: 1, stagger: 0.2, duration: 0.8, ease: "back.out(1.7)", overwrite: true }),
+        onLeave: batch => gsap.set(batch, { opacity: 0, y: 50, scale: 0.9, overwrite: true }),
+        onEnterBack: batch => gsap.to(batch, { opacity: 1, y: 0, scale: 1, stagger: 0.2, duration: 0.8, ease: "back.out(1.7)", overwrite: true }),
+        onLeaveBack: batch => gsap.set(batch, { opacity: 0, y: 50, scale: 0.9, overwrite: true }),
+      });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (skillTrigger) skillTrigger.kill();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
 
   return (
     <div className="main-container">
@@ -329,12 +257,10 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="hero-container" id="home">
         <div className="hero-content">
-          {/* JUDUL UTAMA (KEMBALI STATIS) */}
           <h2>
             Hi, <span style={{ color: '#1f204a' }}>I'm</span>
           </h2>
 
-          {/* JUDUL UTAMA (H1) DENGAN EFEK TYPE */}
           <h1>
             <TextType 
               text={["Sandy Aryadika Widodo."]} 
@@ -345,16 +271,15 @@ export default function Home() {
             />
           </h1>
           
-          {/* SUB-JUDUL DENGAN EFEK DECRYPTED */}
           <div className="hero-subtitle-container">
             <DecryptedText 
               text="Cloud Computing | Full-stack experiments | Team Lead | UI/UX Enthusiast"
-              speed={85}             // Kecepatan acak huruf
-              maxIterations={15}     // Berapa kali huruf diacak sebelum jadi teks asli
-              animateOn="view"       // Animasi jalan saat terlihat
-              revealDirection="left" // Animasi mulai dari tengah (Keren!)
-              className="decrypted-sub" // Class untuk styling font
-              repeatInterval={15000} // Ulangi setiap 15.000 ms (15 detik)
+              speed={85}
+              maxIterations={15}
+              animateOn="view"
+              revealDirection="left"
+              className="decrypted-sub"
+              repeatInterval={15000}
             />
           </div>
 
@@ -384,25 +309,18 @@ export default function Home() {
       <section className="about-section" id="about">
         <div className="about-content">
           <h2 className="section-title">
-            <ScrollReveal 
-              baseOpacity={0} 
-              enableBlur={true} 
-              baseRotation={10} 
-              blurStrength={5}
-              stagger={0.1} // Sedikit lebih lambat antar kata biar dramatis
-            >
+            <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={10} blurStrength={5} stagger={0.1}>
               About Me
             </ScrollReveal>
           </h2>
           <div className="about-grid">
             
-            {/* Bagian Teks (Kiri) - UBAH div MENJADI motion.div */}
             <motion.div 
               className="about-text"
-              initial={{ opacity: 0, x: -100 }} // Keadaan awal: Transparan & geser ke kiri 100px
-              whileInView={{ opacity: 1, x: 0 }} // Keadaan akhir: Terlihat & posisi normal
-              transition={{ duration: 0.8, ease: "easeOut" }} // Durasi animasi 0.8 detik
-              viewport={{ once: false, amount: 0.3 }} // Animasi jalan sekali saat 30% elemen terlihat
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.3 }}
             >
               <p>
                 I am an undergraduate student driven by the intersection of <b>Cloud Computing</b>, <b>Web Development</b>, and <b>Product Design</b>. I believe that technology isn't just about writing code—it's about solving real problems with user-centered thinking.
@@ -418,7 +336,6 @@ export default function Home() {
               </div>
             </motion.div>
             
-            {/* Bagian Gambar (Kanan) - Biarkan Tetap */}
             <div className="about-image" style={{ height: '500px', position: 'relative', zIndex: 10 }}>
               <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
             </div>
@@ -430,45 +347,17 @@ export default function Home() {
       <section className="skills-section" id="skills">
         <div className="skills-tree-container">
           <div className="skills-left"><h2>Tech<br/>Stack</h2></div>
-          
           <div className="skills-right">
-            {/* CORE & LANGUAGES */}
-            <div className="skill-branch">
-              <div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div>
-            </div>
-            <div className="skill-branch">
-              <div className="skill-pill"><FaPython className="icon py"/> Python</div>
-            </div>
-            <div className="skill-branch">
-              <div className="skill-pill"><FaPhp className="icon php"/> PHP</div>
-            </div>
-
-            {/* FRAMEWORK & DB */}
-            <div className="skill-branch">
-              <div className="skill-pill"><FaLaravel className="icon laravel"/> Laravel</div>
-            </div>
-            <div className="skill-branch">
-              <div className="skill-pill"><SiMysql className="icon sql"/> MySQL</div>
-            </div>
-
-            {/* TOOLS, CLOUD, IDE */}
-            <div className="skill-branch">
-              <div className="skill-pill"><FaGitAlt className="icon git"/> Git</div>
-            </div>
-            <div className="skill-branch">
-              <div className="skill-pill"><FaFigma className="icon figma"/> Figma</div>
-            </div>
-            <div className="skill-branch">
-              <div className="skill-pill"><SiGooglecloud className="icon gcp"/> GCP</div>
-            </div>
-            {/* Menggunakan Icon FaCode (Aman) untuk VS Code */}
-            <div className="skill-branch">
-              <div className="skill-pill"><FaCode className="icon vscode"/> Visual Studio</div>
-            </div>
-            {/* Menggunakan Icon FaCloud (Aman) untuk Google Colab */}
-            <div className="skill-branch">
-              <div className="skill-pill"><FaCloud className="icon colab"/> Google Colab</div>
-            </div>
+            <div className="skill-branch"><div className="skill-pill"><SiJavascript className="icon js"/> JavaScript</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaPython className="icon py"/> Python</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaPhp className="icon php"/> PHP</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaLaravel className="icon laravel"/> Laravel</div></div>
+            <div className="skill-branch"><div className="skill-pill"><SiMysql className="icon sql"/> MySQL</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaGitAlt className="icon git"/> Git</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaFigma className="icon figma"/> Figma</div></div>
+            <div className="skill-branch"><div className="skill-pill"><SiGooglecloud className="icon gcp"/> GCP</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaCode className="icon vscode"/> Visual Studio</div></div>
+            <div className="skill-branch"><div className="skill-pill"><FaCloud className="icon colab"/> Google Colab</div></div>
           </div>
         </div>
       </section>
@@ -477,28 +366,13 @@ export default function Home() {
       <section className="projects-section" id="projects">
         <div className="projects-container">
           <div className="section-header">
-            {/* Animasi Judul sama seperti About Me */}
             <h2 className="section-title">
-              <ScrollReveal 
-                baseOpacity={0} 
-                enableBlur={true} 
-                baseRotation={5} 
-                blurStrength={10}
-                stagger={0.1}
-              >
+              <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} stagger={0.1}>
                 Selected Works
               </ScrollReveal>
             </h2>
-            
-            {/* Animasi Subtitle (Fade In Simple) */}
             <p className="section-subtitle">
-              <ScrollReveal 
-                baseOpacity={0} 
-                enableBlur={true} 
-                baseRotation={0} // Tidak perlu rotasi untuk subtitle biar mudah dibaca
-                blurStrength={5}
-                stagger={0.02}   // Lebih cepat
-              >
+              <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={0} blurStrength={5} stagger={0.02}>
                 A collection of projects & experiences.
               </ScrollReveal>
             </p>
@@ -535,25 +409,12 @@ export default function Home() {
         <div className="education-container">
           <div className="education-header">
             <h2 className="section-title">
-              <ScrollReveal 
-                baseOpacity={0} 
-                enableBlur={true} 
-                baseRotation={5} 
-                blurStrength={10}
-                stagger={0.1}
-              >
+              <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} stagger={0.1}>
                 Education
               </ScrollReveal>
             </h2>
-
             <p className="section-subtitle">
-              <ScrollReveal 
-                baseOpacity={0} 
-                enableBlur={true} 
-                baseRotation={0} // Tidak perlu rotasi untuk subtitle biar mudah dibaca
-                blurStrength={5}
-                stagger={0.02}   // Lebih cepat
-              >
+              <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={0} blurStrength={5} stagger={0.02}>
                 My academic journey and milestones.
               </ScrollReveal>
             </p>
@@ -575,11 +436,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CERTIFICATES SECTION (CARD SWAP) --- */}
+      {/* --- CERTIFICATES SECTION --- */}
       <section className="certificates-section" id="certificates">
         <div className="certificates-container">
           
-          {/* Header Split */}
           <div className="certificates-split">
             <div className="certificates-left">
               <h2 className="section-title">Certifications</h2>
@@ -589,24 +449,22 @@ export default function Home() {
               </p>
             </div>
             
-            {/* Area Animasi Card Swap */}
             <div className="certificates-right">
-              {/* Gunakan Component CardSwap */}
+              {/* RESPONSIF: Kartu mengecil di HP (300px) dan normal di Desktop (550px) */}
               <CardSwap
-                width={550}
-                height={420}
-                cardDistance={20}      
-                verticalDistance={15} 
+                width={isMobile ? 300 : 550}
+                height={isMobile ? 380 : 420}
+                cardDistance={isMobile ? 12 : 20}       
+                verticalDistance={isMobile ? 10 : 15} 
                 delay={4000}
-                skewAmount={2}         // Kemiringan sedikit saja agar elegan
+                skewAmount={2}
               >
                 {certificates.map((cert) => (
                   <Card key={cert.id}>
-                    {/* Header Kartu: Logo & Link */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
                       <div style={{ 
-                          width: '430px', 
-                          height: '290px', 
+                          width: isMobile ? '230px' : '430px', 
+                          height: isMobile ? '160px' : '290px', 
                           background: '#f9fafb', 
                           borderRadius: '10px', 
                           padding: '8px', 
@@ -622,11 +480,10 @@ export default function Home() {
                       </a>
                     </div>
 
-                    {/* Isi Teks Kartu */}
                     <div>
                       <h3 style={{ 
                           fontFamily: "'Plus Jakarta Sans', sans-serif", 
-                          fontSize: '1.4rem', 
+                          fontSize: isMobile ? '1.1rem' : '1.4rem', 
                           color: '#1f204a', 
                           margin: '0 0 5px 0',
                           lineHeight: '1.1'

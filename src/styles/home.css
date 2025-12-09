@@ -1,1092 +1,353 @@
 /* src/styles/home.css */
-/* PENTING: Jangan lupa definisikan font pixel lagi di atas jika masih mau pakai */
 @font-face {
   font-family: 'AmstirPixel';
   src: url('../assets/fonts/AmstirPixel.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: normal; font-style: normal;
 }
 
-html {
-  scroll-behavior: smooth; 
-}
+html { scroll-behavior: smooth; }
 
-/* section {
-  scroll-margin-top: 100px; 
-} */
-
+/* --- HERO SECTION --- */
 .hero-container {
-  height: 100vh;
-  display: flex;
-  align-items: center; /* Vertikal tetap tengah */
-  justify-content: center; /* Horizontal container tetap tengah layar */
-  padding: 0 5%; /* Beri padding kiri kanan agar tidak nempel pinggir layar */
-  position: relative;
-  z-index: 1;
-  margin: -80px;
-  scroll-margin-top: 100px;
+  height: 100vh; display: flex; align-items: center; justify-content: center;
+  padding: 0 5%; position: relative; z-index: 1;
+  margin: -80px;/* Layout Fix */
 }
 
 .hero-content {
-  display: flex;
-  flex-direction: column;
-  
-  /* UBAH JADI RATA KIRI */
-  align-items: flex-start; /* Item di dalam container rata kiri */
-  justify-content: center;
-  text-align: left;        /* Teks rata kiri */
-  width: 100%;
-  max-width: 1200px;
-  margin-top: -80px; /* Tarik sedikit ke atas */
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  text-align: left; width: 100%; max-width: 1200px; margin-top: -80px;
 }
 
-/* --- Greetings --- */
 .hero-content h2 {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 4rem;       /* Perkecil ukuran sapaan agar proporsional */
-  color: #6366f1;        /* Warna Ungu sebagai aksen pembeda */
-  
-  line-height: 1;
-  font-weight: normal;
-  letter-spacing: 2px;
-  
-  margin: 0 0 30px 0;    /* Hapus margin atas, beri sedikit jarak bawah */
-  padding-left: 2px;     /* Sedikit indentasi optikal agar lurus dengan huruf besar H1 */
-  
-  background: none;
-  -webkit-text-fill-color: initial;
+  font-family: 'AmstirPixel', sans-serif; font-size: 3rem; color: #6366f1;
+  line-height: 1; font-weight: normal; letter-spacing: 2px;
+  margin: 0 0 10px 0; padding-left: 2px;
 }
 
-/* --- JUDUL UTAMA (H1) --- */
 .hero-content h1 {
-  font-family: 'AmstirPixel', sans-serif;
-  
-  /* Gunakan clamp agar responsif: Minimal 3.5rem, Ideal 8vw, Maksimal 6.5rem */
-  font-size: clamp(3.5rem, 8vw, 6.5rem); 
-  
-  line-height: 1;
-  margin: 0 0 1.5rem 0;  /* Hapus margin atas/kiri/kanan, beri jarak bawah */
-  
-  background: none;
-  -webkit-text-fill-color: initial;
-  color: #1f204a;
-  
-  font-weight: normal;
-  letter-spacing: 2px;
-  width: 100%;
+  font-family: 'AmstirPixel', sans-serif; font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 1.1; margin: 0 0 1.5rem 0; color: #1f204a;
+  font-weight: normal; letter-spacing: 2px; width: 100%;
 }
 
-/* --- DESKRIPSI (P) --- */
-.hero-content p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.5rem;
-  
-  color: #1f204a; 
-  opacity: 0.8;
-  
-  margin-bottom: 3rem;
-  font-weight: normal;
-  letter-spacing: 1px;
-  
-  /* UBAH DI SINI */
-  /* Sebelumnya 600px, ganti jadi 100% agar mengikuti lebar layar */
-  max-width: 100%; 
-  
-  /* Opsional: Jika ingin memaksa 1 baris (tapi hati-hati di HP bisa terpotong) */
-  /* white-space: nowrap; */ 
-}
-
-/* Container Tombol - RATA KIRI */
-.cta-buttons {
-  display: flex;
-  gap: 2rem;
-  justify-content: flex-start; /* Tombol mulai dari kiri */
-  width: 100%;
-}
-
-/* Style Dasar Tombol */
-.btn {
-  padding: 16px 40px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  font-family: 'Plus Jakarta Sans', sans-serif; /* Tombol lebih enak pakai font biasa */
-}
-
-/* Tombol Primary */
-.btn.primary {
-  /* Ganti warna tombol agar cocok dengan tema biru gelap */
-  background: #1f204a; 
-  color: white;
-  box-shadow: 0 10px 20px rgba(31, 32, 74, 0.2);
-  border: none;
-}
-
-.btn.primary:hover {
-  background: #6366f1;
-  /* transform: translateY(-5px); */
-  box-shadow: 0 15px 30px rgba(31, 32, 74, 0.3);
-}
-
-/* Tombol Secondary - Perlu diubah karena background sekarang putih */
-.btn.secondary {
-  background: transparent;
-  
-  /* Border dan Text warna gelap */
-  border: 2px solid #1f204a; 
-  color: #1f204a;
-}
-
-.btn.secondary:hover {
-  background: #1f204a;
-  color: white; /* Saat hover jadi blok warna */
-  /* transform: translateY(-5px); */
-}
-
-/* Wrapper agar posisi margin rapi */
 .hero-subtitle-container {
-  margin-bottom: 3rem; /* Jarak ke tombol */
-  margin-top: 1rem;
-  max-width: 800px;    /* Lebar maksimal agar tidak terlalu panjang */
-  display: flex;
-  justify-content: center;
+  margin-bottom: 3rem; max-width: 800px; display: flex; justify-content: flex-start;
 }
 
-/* Styling Teks Decrypted */
 .decrypted-sub {
-  /* Gunakan font Sans agar mudah dibaca, atau ganti 'AmstirPixel' jika ingin gaya retro */
-  font-family: 'Plus Jakarta Sans', sans-serif; 
-  font-size: 1.3rem;
-  color: #6b7280; /* Warna abu-abu soft */
-  font-weight: 500;
-  text-align: center;
-  line-height: 1.5;
-  
-  /* Menjaga lebar huruf agar tidak bergetar saat animasi */
-  font-variant-numeric: tabular-nums; 
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.3rem; color: #6b7280;
+  font-weight: 500; text-align: left; line-height: 1.5; font-variant-numeric: tabular-nums;
 }
 
-/* --- MARQUEE / RUNNING TEXT SEAMLESS --- */
+.cta-buttons { display: flex; gap: 2rem; justify-content: flex-start; width: 100%; }
+
+.btn {
+  padding: 16px 40px; border-radius: 50px; text-decoration: none;
+  font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease;
+  font-family: 'Plus Jakarta Sans', sans-serif; cursor: pointer;
+}
+
+.btn.primary {
+  background: #1f204a; color: white; border: none;
+  box-shadow: 0 10px 20px rgba(31, 32, 74, 0.2);
+}
+.btn.primary:hover { background: #6366f1; box-shadow: 0 15px 30px rgba(31, 32, 74, 0.3); }
+
+.btn.secondary { background: transparent; border: 2px solid #1f204a; color: #1f204a; }
+.btn.secondary:hover { background: #1f204a; color: white; }
+
+/* --- MARQUEE --- */
 .marquee-container {
-  width: 100%;
-  overflow: hidden; /* Sembunyikan teks yang lewat batas layar */
-  padding-top: 120px; /* Jarak atas bawah */
+  width: 100%; overflow: hidden; padding: 20px 0; margin: 0;
+  background: #fff; border-bottom: 1px solid #f3f4f6;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content; /* Lebar mengikuti panjang teks */
-  gap: 0; /* Tidak ada jarak antar blok duplikasi */
-
-  /* TAMBAHAN PENTING: */
-  /* Agar poros miringnya dari tengah, bukan dari pinggir */
-  transform-origin: center; 
-  /* Will-change memberitahu browser untuk menyiapkan GPU (Performa lebih mulus) */
-  will-change: transform;
-}
+.marquee-track { display: flex; width: max-content; gap: 0; transform-origin: center; will-change: transform; }
 
 .marquee-content {
-  /* Agar teks tidak turun baris */
-  white-space: nowrap;
-  
-  /* Styling Font */
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  font-size: 5rem; /* Sesuaikan ukuran font sesuai selera */
-  color: #1f204a;   /* Warna Navy */
-  
-  /* PENTING: Animasi Seamless */
-  /* Bergerak ke KANAN (Reverse direction dari normal marquee) */
+  white-space: nowrap; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+  font-size: 5rem; color: #1f204a; flex-shrink: 0;
   animation: scrollSeamlessLeft 90s linear infinite;
-  
-  /* Pastikan tidak mengecil */
-  flex-shrink: 0;
 }
 
-.custom-scroll-text {
-  /* Ganti dengan font pilihan Anda */
-  font-family: 'Plus Jakarta Sans', sans-serif; 
-  font-weight: 800; /* Tebal */
-  color: #1f204a;   /* Warna Navy */
-  font-size: 5rem;  /* Ukuran Besar */
-}
-
-/* ANIMASI GERAK KE KANAN TANPA JEDA */
 @keyframes scrollSeamlessLeft {
-  from {
-    /* Mulai dari posisi 0% (blok kanan tersembunyi, blok kiri terlihat) */
-    transform: translateX(0%);
-  }
-  to {
-    /* Berakhir di posisi 0 (blok kanan sudah masuk layar sepenuhnya) */
-    transform: translateX(-100%);
-  }
+  from { transform: translateX(0%); } to { transform: translateX(-100%); }
 }
 
 /* --- ABOUT SECTION --- */
-.about-section {
-  padding: 100px 20px;
-  display: flex;
-  justify-content: center;
-  /* HAPUS overflow: hidden; jika ada, ganti visible */
-  overflow: visible; 
-}
-.about-image {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Tambahkan perspective agar efek 3D maksimal */
-  perspective: 1000px;
-  /* Pastikan z-index tinggi agar kartu muncul di atas elemen lain */
-  z-index: 10;
-}
-
-.about-content {
-  width: 100%;
-  max-width: 1100px;
-}
+.about-section { padding: 100px 20px; display: flex; justify-content: center; overflow: visible; background: #fff; }
+.about-content { width: 100%; max-width: 1100px; }
 
 .section-title {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem; /* Judul Besar */
-  color: #1f204a;
-  margin-bottom: 2rem;
-  text-align: left; /* Rata Kiri sesuai request */
-  line-height: 1;
+  font-family: 'AmstirPixel', sans-serif; font-size: 5rem; color: #1f204a;
+  margin-bottom: 2rem; text-align: left; line-height: 1; width: 100%;
 }
 
-.about-grid {
-  display: grid;
-  /* Grid: Teks (1.5 bagian) - Foto (1 bagian) */
-  grid-template-columns: 1.5fr 1fr; 
-  gap: 4rem;
-  align-items: start; /* Rata atas */
-}
+.about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: center; }
 
 .about-text p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.15rem; /* Ukuran pas untuk dibaca */
-  color: #1f204a;
-  line-height: 1.8; /* Spasi antar baris agar tidak sesak */
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
-  text-align: justify; /* Opsional: Rata kanan-kiri agar rapi, atau 'left' */
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; color: #4b5563;
+  line-height: 1.8; margin-bottom: 1.5rem; text-align: justify;
+}
+.about-text b { color: #1f204a; font-weight: 700; border-bottom: 2px solid #a5b4fc; }
+
+.about-image {
+  width: 100%; display: flex; justify-content: center; align-items: center;
+  perspective: 1000px; z-index: 10;
 }
 
-/* Styling untuk kata yang di-Bold (<b>) */
-.about-text b {
-  color: #1f204a; /* Tetap navy */
-  font-weight: 700;
-  border-bottom: 2px solid #a5b4fc; /* Garis bawah ungu muda sebagai highlight */
-}
+/* --- SKILLS SECTION --- */
+.skills-section { padding: 100px 20px; display: flex; justify-content: center; background: #fff; }
+.skills-tree-container { display: flex; width: 100%; max-width: 900px; position: relative; }
 
-
-/* --- SKILLS SECTION (TREE DIAGRAM) --- */
-.skills-section {
-  padding: 40px 20px;  
-  display: flex;
-  justify-content: center;
-  scroll-margin-top: 100px;
-}
-
-.skills-tree-container {
-  display: flex;
-  width: 100%;
-  max-width: 900px; /* Tidak perlu terlalu lebar agar garisnya enak dilihat */
-  gap: 0; /* Gap diatur manual via padding */
-  position: relative;
-}
-
-/* --- BAGIAN KIRI (JUDUL) --- */
 .skills-left {
-  flex: 0 0 35%; /* Mengambil 35% lebar */
-  text-align: right; /* Rata kanan agar dekat dengan garis */
-  padding-right: 40px; /* Jarak antara teks dan garis vertikal */
-  
-  /* Agar Judul tetap diam saat scroll (Sticky) */
-  position: sticky;
-  top: 150px; 
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex: 0 0 35%; text-align: right; padding-right: 40px;
+  position: sticky; top: 150px; height: fit-content;
+  display: flex; align-items: center; justify-content: flex-end;
 }
-
 .skills-left h2 {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem; 
-  line-height: 0.9;
-  color: #1f204a;
-  margin: 0;
-  position: relative;
+  font-family: 'AmstirPixel', sans-serif; font-size: 5rem; line-height: 0.9;
+  color: #1f204a; margin: 0; position: relative;
 }
-
-/* GARIS PENGHUBUNG UTAMA (DARI TEKS KE GARIS VERTIKAL) */
 .skills-left h2::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -40px; /* Menembus padding */
-  width: 40px; /* Panjang garis */
-  height: 3px; /* Ketebalan garis */
-  background: #1f204a;
+  content: ''; position: absolute; top: 50%; right: -40px;
+  width: 40px; height: 3px; background: #1f204a;
 }
 
-/* --- BAGIAN KANAN (LIST ICON) --- */
 .skills-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column; /* VERTICAL */
-  gap: 20px; /* Jarak antar icon vertical */
-  position: relative;
-  
-  /* GARIS VERTIKAL UTAMA (TIANG) */
-  border-left: 3px solid #1f204a; 
-  padding-left: 40px; /* Jarak icon dari garis tiang */
-  padding-top: 10px;
-  padding-bottom: 10px;
+  flex: 1; display: flex; flex-direction: column; gap: 20px; position: relative;
+  border-left: 3px solid #1f204a; padding-left: 40px; padding-top: 10px; padding-bottom: 10px;
 }
 
-/* --- ITEM SKILL & CABANG --- */
-.skill-branch {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* GARIS CABANG KECIL (DARI TIANG KE ICON) */
+.skill-branch { position: relative; display: flex; align-items: center; }
 .skill-branch::before {
-  content: '';
-  position: absolute;
-  left: -40px; /* Mundur ke garis tiang */
-  top: 50%;
-  width: 40px; /* Panjang garis cabang */
-  height: 2px;
-  background: #1f204a; /* Warna garis cabang */
-  transition: all 0.3s ease;
+  content: ''; position: absolute; left: -40px; top: 50%;
+  width: 40px; height: 2px; background: #1f204a; transition: all 0.3s ease;
 }
-
-/* TITIK KONEKTOR (BULATAN DI TIANG) */
 .skill-branch::after {
-  content: '';
-  position: absolute;
-  left: -49px; /* Pas di tengah garis tiang */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  background: #ffffff;
-  border: 2px solid #1f204a;
-  border-radius: 50%;
-  z-index: 2;
-  transition: all 0.3s ease;
+  content: ''; position: absolute; left: -49px; top: 50%; transform: translateY(-50%);
+  width: 10px; height: 10px; background: #ffffff; border: 2px solid #1f204a;
+  border-radius: 50%; z-index: 2; transition: all 0.3s ease;
 }
 
-/* Styling Pill Icon (Tetap sama, dirapikan sedikit) */
 .skill-pill {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1f204a;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  padding: 12px 28px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  width: fit-content; /* Lebar sesuai isi */
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 600;
+  color: #1f204a; background: #ffffff; border: 1px solid #e5e7eb;
+  padding: 10px 24px; border-radius: 50px; transition: all 0.3s ease; width: fit-content;
 }
-
-/* EFEK HOVER KEREN */
-/* Saat salah satu branch di hover: */
 .skill-branch:hover .skill-pill {
-  transform: translateX(10px); /* Geser ke kanan */
-  border-color: #6366f1;
-  color: #6366f1;
+  transform: translateX(10px); border-color: #6366f1; color: #6366f1;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
 }
-
-/* Ubah warna garis cabang saat hover */
-.skill-branch:hover::before {
-  background: #6366f1; 
-}
-
-/* Ubah warna titik saat hover */
-.skill-branch:hover::after {
-  background: #6366f1;
-  border-color: #6366f1;
-}
+.skill-branch:hover::before { background: #6366f1; }
+.skill-branch:hover::after { background: #6366f1; border-color: #6366f1; }
 
 /* --- PROJECTS SECTION --- */
-.projects-section {
-  padding: 100px 20px;
-  display: flex;
-  justify-content: center;
-}
+.projects-section { padding: 100px 20px; display: flex; justify-content: center; background: #f9fafb; }
+.projects-container { width: 100%; max-width: 1200px; }
 
-.projects-container {
-  width: 100%;
-  max-width: 1200px;
-}
-
-.section-header {
-  margin-bottom: 60px;
-}
-
-.section-header .section-title {
-  /* Judul Besar ala Pixel */
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem;
-  color: #1f204a;
-  line-height: 0.9;
-  margin-bottom: 10px;
-}
-
+.section-header { margin-bottom: 60px; text-align: left; display: flex; flex-direction: column; align-items: flex-start; }
+.section-header .section-title { margin-bottom: 10px; }
 .section-subtitle {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.2rem;
-  color: #6b7280;
-  max-width: 500px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem;
+  color: #6b7280; max-width: 600px; margin: 0; text-align: left;
 }
 
-/* GRID LAYOUT */
-.projects-grid {
-  display: grid;
-  /* Responsif: Minimal lebar kartu 350px, kalau muat bikin kolom baru */
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
-}
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
 
-/* KARTU PROYEK */
 .project-card {
-  background: #ffffff;
-  border-radius: 20px;
-  overflow: hidden; /* Agar gambar tidak bocor keluar radius */
-  border: 1px solid #e1e1e1;
-  transition: all 0.4s ease;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  background: #ffffff; border-radius: 20px; overflow: hidden; border: 1px solid #e1e1e1;
+  transition: all 0.4s ease; position: relative; display: flex; flex-direction: column;
 }
+.project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(31, 32, 74, 0.1); border-color: #1f204a; }
 
-.project-card:hover {
-  transform: translateY(-10px); /* Kartu naik */
-  box-shadow: 0 20px 40px rgba(31, 32, 74, 0.1);
-  border-color: #1f204a;
-}
-
-/* GAMBAR PROYEK */
-.card-image-wrapper {
-  width: 100%;
-  height: 240px;
-  overflow: hidden;
-  position: relative;
-  background: #e5e7eb; /* Placeholder warna abu */
-}
-
+.card-image-wrapper { width: 100%; height: 240px; overflow: hidden; position: relative; background: #e5e7eb; }
 .card-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Efek Default: Hitam Putih (Grayscale) */
-  filter: grayscale(100%);
-  transition: all 0.5s ease;
+  width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: all 0.5s ease;
 }
+.project-card:hover .card-image-wrapper img { filter: grayscale(0%); transform: scale(1.05); }
 
-/* Saat Kartu Di-Hover: Gambar jadi berwarna & Zoom */
-.project-card:hover .card-image-wrapper img {
-  filter: grayscale(0%);
-  transform: scale(1.05);
-}
-
-/* KONTEN KARTU */
-.card-content {
-  padding: 25px;
-  flex: 1; /* Agar tinggi kartu seragam */
-  display: flex;
-  flex-direction: column;
-}
-
-.card-header-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
-}
-
+.card-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+.card-header-flex { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
 .card-content h3 {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 2rem; /* Judul Proyek Pixel */
-  color: #1f204a;
-  margin: 0;
-  line-height: 1.1;
+  font-family: 'AmstirPixel', sans-serif; font-size: 2rem; color: #1f204a;
+  margin: 0; line-height: 1.1; text-align: left;
 }
-
 .card-content p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1rem;
-  color: #6b7280;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  flex-grow: 1; /* Mendorong tags ke bawah */
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; color: #6b7280;
+  line-height: 1.6; margin-bottom: 20px; flex-grow: 1; text-align: left;
 }
 
-/* TAGS TEKNOLOGI */
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
+.card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .card-tags span {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #6366f1;
-  background: rgba(99, 102, 241, 0.1); /* Background ungu transparan */
-  padding: 6px 12px;
-  border-radius: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+  color: #6366f1; background: rgba(99, 102, 241, 0.1); padding: 6px 12px; border-radius: 6px;
 }
+.card-links-mini { display: flex; gap: 12px; }
+.card-links-mini a { color: #9ca3af; font-size: 1.2rem; transition: color 0.3s ease; }
+.card-links-mini a:hover { color: #1f204a; }
 
-/* TOMBOL LINK MINI (ICON) */
-.card-links-mini {
-  display: flex;
-  gap: 12px;
-}
+/* --- EDUCATION SECTION --- */
+.education-section { padding: 100px 20px; display: flex; justify-content: center; background: #fff; }
+.education-container { width: 100%; max-width: 1100px; }
+.education-header { margin-bottom: 60px; text-align: left; }
+.education-list { display: flex; flex-direction: column; gap: 0; }
 
-.card-links-mini a {
-  color: #9ca3af;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-}
-
-.card-links-mini a:hover {
-  color: #1f204a; /* Jadi gelap saat hover */
-}
-
-/* --- EDUCATION SECTION (FIXED TIMELINE) --- */
-.education-section {
-  padding: 100px 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.education-container {
-  width: 100%;
-  max-width: 1100px;
-}
-
-.education-header { margin-bottom: 60px; }
-.education-header .section-title {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem;
-  color: #1f204a;
-  line-height: 1;
-  margin: 0;
-}
-.education-header p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #6b7280;
-  margin-top: 10px;
-  font-size: 1.1rem;
-}
-
-/* PENTING: Hapus gap agar item menempel */
-.education-list { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0; 
-}
-
-/* ITEM WRAPPER */
-.edu-item {
-  display: flex;
-  position: relative;
-  /* Hapus padding di wrapper, pindahkan ke isi */
-  padding: 0;
-  /* Beri min-height agar proporsional */
-  min-height: 150px; 
-}
-
-/* GARIS VERTIKAL YANG NYAMBUNG */
+.edu-item { display: flex; position: relative; padding: 0; min-height: 150px; }
 .edu-item::before {
-  content: '';
-  position: absolute;
-  left: 220px; /* Posisi garis */
-  top: 0;
-  bottom: 0;
-  height: 100%; /* Tarik penuh dari atas ke bawah */
-  width: 2px;
-  background: #e5e7eb;
-  z-index: 1;
+  content: ''; position: absolute; left: 220px; top: 0; bottom: 0;
+  width: 2px; background: #e5e7eb; z-index: 1;
 }
+.edu-item:last-child::before { height: 45px; bottom: auto; }
 
-/* Potong garis di item TERAKHIR agar tidak bocor ke bawah */
-.edu-item:last-child::before {
-  height: 45px; /* Stop pas di ikon */
-  bottom: auto;
-}
-
-/* ISI: TAHUN */
 .edu-year {
-  flex: 0 0 180px;
-  flex-shrink: 0;
-  text-align: right;
-  /* Beri padding di sini sebagai pengganti gap */
-  padding: 40px 40px 40px 0;
-  
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 3rem;
-  line-height: 1;
-  color: #9ca3af;
-  transition: all 0.3s ease;
+  flex: 0 0 180px; flex-shrink: 0; text-align: right; padding: 40px 40px 40px 0;
+  font-family: 'AmstirPixel', sans-serif; font-size: 2.5rem; line-height: 1;
+  color: #9ca3af; transition: all 0.3s ease;
 }
 
-/* ISI: DETAIL */
-.edu-details {
-  flex: 1;
-  padding: 40px 0 40px 80px;
-  /* Border pemisah ada di sini */
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-/* Hapus border di item terakhir */
-.edu-item:last-child .edu-details {
-  border-bottom: none;
-}
-
+.edu-details { flex: 1; padding: 40px 0 40px 80px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.edu-item:last-child .edu-details { border-bottom: none; }
 .edu-details h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1f204a;
-  margin: 0 0 5px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 700;
+  color: #1f204a; margin: 0 0 5px 0; text-align: left;
 }
-
 .edu-details h4 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #6366f1;
-  margin: 0 0 15px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 500;
+  color: #6366f1; margin: 0 0 15px 0; text-align: left;
 }
-
 .edu-details p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1rem;
-  color: #4b5563;
-  line-height: 1.6;
-  max-width: 650px;
-  margin: 0;
-  text-align: justify;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; color: #4b5563;
+  line-height: 1.6; max-width: 650px; margin: 0; text-align: justify;
 }
 
-/* IKON TIMELINE */
 .edu-timeline-icon {
-  position: absolute;
-  left: 221px; /* Pas di tengah garis */
-  transform: translateX(-50%);
-  top: 45px; /* Sejajar dengan teks tahun */
-  width: 44px;
-  height: 44px;
-  background: #ffffff;
-  border: 2px solid #e5e7eb;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: #9ca3af;
-  z-index: 2;
-  transition: all 0.3s ease;
+  position: absolute; left: 221px; transform: translateX(-50%); top: 45px;
+  width: 44px; height: 44px; background: #ffffff; border: 2px solid #e5e7eb;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: #9ca3af; z-index: 2; transition: all 0.3s ease;
 }
-
-/* PANAH KANAN */
 .edu-icon {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  color: #1f204a;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.3s ease;
-  padding-top: 40px; /* Sejajar dengan konten */
+  display: flex; align-items: center; justify-content: flex-end; font-size: 1.5rem;
+  color: #1f204a; opacity: 0; transform: translateX(-20px); transition: all 0.3s ease; padding-top: 40px;
 }
-
-/* HOVER EFFECTS */
 .edu-item:hover .edu-year { color: #1f204a; }
-.edu-item:hover .edu-timeline-icon {
-  background: #1f204a; color: #ffffff; border-color: #1f204a; transform: translateX(-50%) scale(1.15);
-}
+.edu-item:hover .edu-timeline-icon { background: #1f204a; color: #ffffff; border-color: #1f204a; transform: translateX(-50%) scale(1.15); }
 .edu-item:hover .edu-icon { opacity: 1; transform: translateX(0); }
 
 /* --- CERTIFICATES SECTION --- */
-.certificates-section {
-  padding: 100px 20px;
-  display: flex;
-  justify-content: center;
-  /* overflow: hidden; -> Hati-hati dengan ini jika kartu terpotong */
-}
-
-.certificates-container {
-  width: 100%;
-  max-width: 1150px;
-}
-
-.certificates-split {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.certificates-left {
-  flex: 1;
-}
-
-.certificates-left .section-title {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem;
-  color: #1f204a;
-  line-height: 1;
-  margin-bottom: 20px;
-}
-
-.certificates-left .section-subtitle {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.2rem;
-  color: #6b7280;
-  line-height: 1.6;
-}
-
-.certificates-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 550px;
-}
+.certificates-section { padding: 100px 20px; display: flex; justify-content: center; background: #f9fafb; }
+.certificates-container { width: 100%; max-width: 1150px; }
+.certificates-split { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.certificates-left { flex: 1; text-align: left; }
+.certificates-left .section-title { font-family: 'AmstirPixel', sans-serif; font-size: 5rem; color: #1f204a; line-height: 1; margin-bottom: 20px; }
+.certificates-left .section-subtitle { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; color: #6b7280; line-height: 1.6; }
+.certificates-right { flex: 1; display: flex; justify-content: center; align-items: center; height: 550px; }
 
 /* --- CONTACT SECTION --- */
 .contact-section {
-  padding: 40px 20px 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  padding: 40px 20px; display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center; text-align: left; background: #fff;
 }
-
 .contact-container {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 80px;
+  width: 100%; max-width: 800px; margin-bottom: 80px;
+  margin-left: auto; margin-right: auto; text-align: left;
 }
-
 .contact-section .section-title {
-  width: 100%;
-  text-align: center;
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 6rem;
-  color: #1f204a;
-  line-height: 1;
-  margin-bottom: 20px;
+  width: 100%; text-align: left; font-family: 'AmstirPixel', sans-serif;
+  font-size: 5rem; color: #1f204a; line-height: 1; margin-bottom: 20px;
 }
-
 .contact-subtitle {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.2rem;
-  color: #6b7280;
-  line-height: 1.6;
-  margin-bottom: 40px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; color: #6b7280;
+  line-height: 1.6; margin-bottom: 40px; text-align: left;
 }
 
-/* EMAIL BOX (INTERAKTIF) */
 .email-box {
-  background: #f9fafb;
-  border: 2px dashed #e5e7eb; /* Border putus-putus estetik */
-  border-radius: 20px;
-  padding: 20px 40px;
-  
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
+  background: #f9fafb; border: 2px dashed #e5e7eb; border-radius: 20px;
+  padding: 20px 40px; display: inline-flex; align-items: center; justify-content: center;
+  gap: 15px; cursor: pointer; position: relative; transition: all 0.3s ease;
 }
+.email-box:hover { border-color: #6366f1; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15); }
+.email-text { font-family: 'AmstirPixel', sans-serif; font-size: 2rem; color: #1f204a; padding-top: 5px; }
+.email-icon, .copy-icon { font-size: 1.5rem; color: #9ca3af; transition: color 0.3s ease; }
+.email-box:hover .email-icon, .email-box:hover .copy-icon { color: #6366f1; }
 
-.email-box:hover {
-  border-color: #6366f1; /* Border jadi ungu saat hover */
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
-}
-
-.email-text {
-  font-family: 'AmstirPixel', sans-serif;
-  font-size: 2rem;
-  color: #1f204a;
-  padding-top: 5px; /* Koreksi vertikal font pixel */
-}
-
-.email-icon, .copy-icon {
-  font-size: 1.5rem;
-  color: #9ca3af;
-  transition: color 0.3s ease;
-}
-
-.email-box:hover .email-icon,
-.email-box:hover .copy-icon {
-  color: #6366f1;
-}
-
-/* Tooltip "Copied!" */
 .copy-feedback {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  
-  background: #1f204a;
-  color: white;
-  padding: 5px 12px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
+  position: absolute; top: -40px; left: 50%; transform: translateX(-50%) translateY(10px);
+  background: #1f204a; color: white; padding: 5px 12px; border-radius: 8px;
+  font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0;
+  pointer-events: none; transition: all 0.3s ease;
 }
+.copy-feedback.active { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-.copy-feedback.active {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* SOCIAL LINKS */
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
+.social-links { display: flex; justify-content: flex-start; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
 .social-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #1f204a;
-  text-decoration: none;
-  
-  padding: 12px 24px;
-  border-radius: 50px;
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
+  display: flex; align-items: center; gap: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600; font-size: 1.1rem; color: #1f204a; text-decoration: none;
+  padding: 12px 24px; border-radius: 50px; border: 1px solid #e5e7eb; transition: all 0.3s ease;
+}
+.social-btn:hover { background: #1f204a; color: #ffffff; border-color: #1f204a; transform: translateY(-3px); }
+
+.footer { width: 100%; border-top: 1px solid #f3f4f6; padding-top: 30px; }
+.footer p { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: #9ca3af; margin: 0; text-align: center; }
+
+/* --- RESPONSIVE / MEDIA QUERY --- */
+@media (max-width: 1024px) {
+  .hero-content h1 { font-size: 5rem; }
+  .skills-tree-container { max-width: 100%; }
+  .skills-left h2 { font-size: 4rem; }
 }
 
-.social-btn:hover {
-  background: #1f204a;
-  color: #ffffff;
-  border-color: #1f204a;
-  transform: translateY(-3px);
-}
-
-/* FOOTER */
-.footer {
-  width: 100%;
-  border-top: 1px solid #f3f4f6;
-  padding-top: 30px;
-}
-
-.footer p {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem;
-  color: #9ca3af;
-  margin: 0;
-}
-
-/* RESPONSIVE HP */
 @media (max-width: 900px) {
-  .skills-split-container {
-    flex-direction: column; /* Jadi atas bawah di HP/Tablet */
-    align-items: flex-start;
-    gap: 2rem;
-  }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-image { order: -1; max-width: 350px; margin: 0 auto; }
   
-  .skills-left h2 {
-    font-size: 4rem; /* Kecilkan judul di HP */
+  .skills-tree-container { flex-direction: column; align-items: flex-start; }
+  .skills-left {
+    position: relative; top: 0; width: 100%; text-align: left; justify-content: flex-start;
+    padding-right: 0; margin-bottom: 30px; padding-left: 20px;
   }
-  
-  .skills-right {
-    justify-content: flex-start;
-  }
+  .skills-left h2::after { display: none; }
+  .skills-right { padding-left: 20px; border-left: 2px solid #e5e7eb; margin-left: 20px; width: 100%; }
+
+  .certificates-split { flex-direction: column; gap: 3rem; }
+  .certificates-left { text-align: center; }
+  .certificates-left .section-title, .certificates-left .section-subtitle { text-align: center; }
 }
 
-/* --- RESPONSIVE (PENTING) --- */
-/* Agar tidak hancur saat dibuka di HP */
 @media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 3rem; /* Di HP dikecilkan sedikit supaya muat */
-  }
+  .hero-container { margin: 0; padding-top: 100px; height: auto; min-height: 100vh; }
+  .hero-content { margin-top: 0; }
+  .hero-content h1 { font-size: 3.5rem; line-height: 1.1; }
+  .hero-content p { font-size: 1rem; }
   
-  .hero-content p {
-    font-size: 1.1rem;
-  }
+  .cta-buttons { flex-direction: column; gap: 1rem; width: 100%; }
+  .btn { width: 100%; text-align: center; }
+  .marquee-content { font-size: 2.5rem; }
   
-  .cta-buttons {
-    flex-direction: column; /* Tombol jadi atas-bawah di HP */
-    gap: 1rem;
-    width: 100%;
-  }
-  
-  .btn {
-    width: 100%; /* Tombol memenuhi lebar layar di HP */
-    text-align: center;
-    box-sizing: border-box;
-  }
+  .projects-grid { grid-template-columns: 1fr; }
+  .card-image-wrapper { height: 200px; }
 
-.marquee-content {
-    font-size: 1.5rem; /* Font lebih kecil di HP */
-    animation-duration: 10s; /* Lebih cepat di layar kecil */
-  }
-
-    .about-grid {
-    grid-template-columns: 1fr; /* Jadi 1 kolom */
-    gap: 2rem;
-  }
-
-  .custom-scroll-text {
-    font-size: 2.5rem !important; /* Paksa kecil di HP */
-  }
-  
-  .about-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    order: -1; /* Foto pindah ke atas di HP */
-    max-width: 300px; /* Batasi lebar foto di HP */
-    margin: 0 auto; /* Tengah */
-    perspective: 1000px;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .skills-tree-container {
-    flex-direction: column;
-  }
-  
-  .skills-left {
-    text-align: left;
-    padding-right: 0;
-    padding-bottom: 20px;
-    padding-left: 20px; /* Geser dikit */
-    top: 0;
-    position: relative;
-    justify-content: flex-start;
-  }
-  
-  .skills-left h2::after {
-    display: none; /* Hapus garis konektor judul di HP */
-  }
-  
-  .skills-right {
-    padding-left: 20px;
-    border-left: 2px solid #e5e7eb; /* Garis tiang lebih tipis di HP */
-    margin-left: 20px;
-  }
-  
-  .skill-branch::before {
-    width: 20px;
-    left: -20px;
-  }
-  
-  .skill-branch::after {
-    left: -25px;
-  }
-
-    .section-header .section-title {
-    font-size: 3.5rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr; /* 1 kolom di HP */
-  }
-  
-  .card-image-wrapper {
-    height: 200px;
-  }
-
-  .edu-item { flex-direction: column; }
-  .edu-year { 
-    text-align: left; 
-    padding: 20px 0 10px 60px; /* Geser kanan biar gak nabrak garis */
-    font-size: 2.5rem; 
-  }
-  .edu-details { padding: 0 0 40px 60px; }
-  .edu-item::before { left: 20px; }
-  .edu-timeline-icon { left: 21px; top: 25px; }
-  .edu-item:last-child::before { height: 25px; }
+  /* Education Mobile */
+  .edu-item { flex-direction: column; margin-bottom: 30px; padding-left: 35px; min-height: auto; }
+  .edu-item::before { left: 10px; width: 2px; top: 5px; }
+  .edu-item:last-child::before { display: none; }
+  .edu-timeline-icon { left: 11px; top: 0; width: 30px; height: 30px; font-size: 0.8rem; transform: none !important; }
+  .edu-year { text-align: left; padding: 0 0 5px 0; font-size: 1.8rem; width: 100%; flex: auto; }
+  .edu-details { padding: 0; border-bottom: 1px solid #f3f4f6; padding-bottom: 20px; }
   .edu-icon { display: none; }
 
-  .contact-section .section-title {
-    font-size: 3.5rem;
-  }
+  /* Contact Mobile */
+  .contact-section { align-items: center; text-align: center; }
+  .contact-container { text-align: center; }
+  .contact-section .section-title, .contact-subtitle { text-align: center; }
+  .email-box { padding: 20px; width: 100%; flex-direction: column; gap: 15px; }
+  .email-text { font-size: 1.2rem; word-break: break-all; }
+  .social-links { flex-direction: column; width: 100%; gap: 15px; }
+  .social-btn { justify-content: center; width: 100%; }
 
-  .certificates-split {
-    flex-direction: column;
-    gap: 3rem; /* Jarak antar teks dan kartu diperlebar */
-    text-align: center;
-  }
-  
-  .certificates-left .section-title {
-    font-size: 4rem;
-  }
-
-  /* Di Tablet/Laptop kecil, tinggi area disesuaikan */
-  .certificates-right {
-    height: 500px;
-    width: 100%;
-  }
-  
-  .email-box {
-    padding: 15px 20px;
-    width: 100%; /* Full width di HP */
-    flex-direction: column; /* Icon di atas, teks di bawah */
-    gap: 10px;
-  }
-  
-  .email-text {
-    font-size: 1.5rem;
-    word-break: break-all; /* Agar email panjang tidak jebol */
-  }
-  
-  .social-links {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .social-btn {
-    justify-content: center;
-  }
-
-  .decrypted-sub {
-    font-size: 1rem; /* Kecilkan sedikit di HP */
-    padding: 0 10px;
-  }
+  .certificates-left .section-title { font-size: 3.5rem; }
+  .certificates-right { height: 400px; width: 100%; }
 }
