@@ -60,7 +60,6 @@ html { scroll-behavior: smooth; }
 /* --- MARQUEE --- */
 .marquee-container {
   width: 100%; overflow: hidden; padding: 20px 0; margin: 0;
-  background: #fff; border-bottom: 1px solid #f3f4f6;
 }
 
 .marquee-track { display: flex; width: max-content; gap: 0; transform-origin: center; will-change: transform; }
@@ -76,11 +75,11 @@ html { scroll-behavior: smooth; }
 }
 
 /* --- ABOUT SECTION --- */
-.about-section { padding: 100px 20px; display: flex; justify-content: center; overflow: visible; background: #fff; }
+.about-section { padding: 100px 20px; display: flex; justify-content: center; overflow: visible; }
 .about-content { width: 100%; max-width: 1100px; }
 
 .section-title {
-  font-family: 'AmstirPixel', sans-serif; font-size: 5rem; color: #1f204a;
+  font-family: 'AmstirPixel', sans-serif; font-size: 6rem; color: #1f204a;
   margin-bottom: 2rem; text-align: left; line-height: 1; width: 100%;
 }
 
@@ -98,8 +97,8 @@ html { scroll-behavior: smooth; }
 }
 
 /* --- SKILLS SECTION --- */
-.skills-section { padding: 100px 20px; display: flex; justify-content: center; background: #fff; }
-.skills-tree-container { display: flex; width: 100%; max-width: 900px; position: relative; }
+.skills-section { padding: 100px 20px; display: flex; justify-content: center}
+.skills-tree-container { display: flex; width: 100%; max-width: 600px; position: relative; }
 
 .skills-left {
   flex: 0 0 35%; text-align: right; padding-right: 40px;
@@ -107,7 +106,7 @@ html { scroll-behavior: smooth; }
   display: flex; align-items: center; justify-content: flex-end;
 }
 .skills-left h2 {
-  font-family: 'AmstirPixel', sans-serif; font-size: 5rem; line-height: 0.9;
+  font-family: 'AmstirPixel', sans-serif; font-size: 6rem; line-height: 0.9;
   color: #1f204a; margin: 0; position: relative;
 }
 .skills-left h2::after {
@@ -145,7 +144,7 @@ html { scroll-behavior: smooth; }
 .skill-branch:hover::after { background: #6366f1; border-color: #6366f1; }
 
 /* --- PROJECTS SECTION --- */
-.projects-section { padding: 100px 20px; display: flex; justify-content: center; background: #f9fafb; }
+.projects-section { padding: 100px 20px; display: flex; justify-content: center; }
 .projects-container { width: 100%; max-width: 1200px; }
 
 .section-header { margin-bottom: 60px; text-align: left; display: flex; flex-direction: column; align-items: flex-start; }
@@ -190,7 +189,7 @@ html { scroll-behavior: smooth; }
 .card-links-mini a:hover { color: #1f204a; }
 
 /* --- EDUCATION SECTION --- */
-.education-section { padding: 100px 20px; display: flex; justify-content: center; background: #fff; }
+.education-section { padding: 100px 20px; display: flex; justify-content: center;}
 .education-container { width: 100%; max-width: 1100px; }
 .education-header { margin-bottom: 60px; text-align: left; }
 .education-list { display: flex; flex-direction: column; gap: 0; }
@@ -238,59 +237,38 @@ html { scroll-behavior: smooth; }
 .edu-item:hover .edu-icon { opacity: 1; transform: translateX(0); }
 
 /* --- CERTIFICATES SECTION --- */
-.certificates-section { padding: 100px 20px; display: flex; justify-content: center; background: #f9fafb; }
+.certificates-section { padding: 100px 20px; display: flex; justify-content: center; }
 .certificates-container { width: 100%; max-width: 1150px; }
 .certificates-split { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .certificates-left { flex: 1; text-align: left; }
-.certificates-left .section-title { font-family: 'AmstirPixel', sans-serif; font-size: 5rem; color: #1f204a; line-height: 1; margin-bottom: 20px; }
+.certificates-left .section-title { font-family: 'AmstirPixel', sans-serif; font-size: 6rem; color: #1f204a; line-height: 1; margin-bottom: 20px; }
 .certificates-left .section-subtitle { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; color: #6b7280; line-height: 1.6; }
 .certificates-right { flex: 1; display: flex; justify-content: center; align-items: center; height: 550px; }
 
 /* --- CONTACT SECTION --- */
 .contact-section {
-  padding: 40px 20px; display: flex; flex-direction: column;
-  align-items: flex-start; justify-content: center; text-align: left; background: #fff;
-}
-.contact-container {
-  width: 100%; max-width: 800px; margin-bottom: 80px;
-  margin-left: auto; margin-right: auto; text-align: left;
-}
-.contact-section .section-title {
-  width: 100%; text-align: left; font-family: 'AmstirPixel', sans-serif;
-  font-size: 5rem; color: #1f204a; line-height: 1; margin-bottom: 20px;
-}
-.contact-subtitle {
-  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; color: #6b7280;
-  line-height: 1.6; margin-bottom: 40px; text-align: left;
+  padding: 40px 20px; display: flex; flex-direction: column;align-items: center;justify-content: center; text-align: center;
 }
 
-.email-box {
-  background: #f9fafb; border: 2px dashed #e5e7eb; border-radius: 20px;
-  padding: 20px 40px; display: inline-flex; align-items: center; justify-content: center;
-  gap: 15px; cursor: pointer; position: relative; transition: all 0.3s ease;
-}
+.contact-container {width: 100%; max-width: 800px; margin-bottom: 40px;margin-left: auto; margin-right: auto;display: flex;flex-direction: column;align-items: center; }
+.contact-section .section-title {width: 100%; text-align: center; font-family: 'AmstirPixel', sans-serif;font-size: 6rem; color: #1f204a; line-height: 1; margin-bottom: 20px;}
+.contact-subtitle {font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; color: #6b7280;line-height: 1.6; margin-bottom: 40px; text-align: center; max-width: 600px;}
+
+.email-box {background: #f9fafb; border: 2px dashed #e5e7eb; border-radius: 20px;padding: 20px 40px; display: inline-flex; align-items: center; justify-content: center;gap: 15px; cursor: pointer; position: relative; transition: all 0.3s ease;width: auto;max-width: 100%;}
 .email-box:hover { border-color: #6366f1; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15); }
 .email-text { font-family: 'AmstirPixel', sans-serif; font-size: 2rem; color: #1f204a; padding-top: 5px; }
 .email-icon, .copy-icon { font-size: 1.5rem; color: #9ca3af; transition: color 0.3s ease; }
-.email-box:hover .email-icon, .email-box:hover .copy-icon { color: #6366f1; }
+.email-box:hover .email-icon, 
+.email-box:hover .copy-icon { color: #6366f1; }
 
-.copy-feedback {
-  position: absolute; top: -40px; left: 50%; transform: translateX(-50%) translateY(10px);
-  background: #1f204a; color: white; padding: 5px 12px; border-radius: 8px;
-  font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0;
-  pointer-events: none; transition: all 0.3s ease;
-}
+.copy-feedback {position: absolute; top: -40px; left: 50%; transform: translateX(-50%) translateY(10px);background: #1f204a; color: white; padding: 5px 12px; border-radius: 8px;font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0;pointer-events: none; transition: all 0.3s ease;white-space: nowrap;}
 .copy-feedback.active { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-.social-links { display: flex; justify-content: flex-start; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
-.social-btn {
-  display: flex; align-items: center; gap: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600; font-size: 1.1rem; color: #1f204a; text-decoration: none;
-  padding: 12px 24px; border-radius: 50px; border: 1px solid #e5e7eb; transition: all 0.3s ease;
-}
+.social-links { display: flex; justify-content: center;gap: 20px; margin-top: 40px; flex-wrap: wrap; }
+.social-btn {display: flex; align-items: center; gap: 10px; font-family: 'Plus Jakarta Sans', sans-serif;font-weight: 600; font-size: 1.1rem; color: #1f204a; text-decoration: none;padding: 12px 24px; border-radius: 50px; border: 1px solid #e5e7eb; transition: all 0.3s ease;}
 .social-btn:hover { background: #1f204a; color: #ffffff; border-color: #1f204a; transform: translateY(-3px); }
 
-.footer { width: 100%; border-top: 1px solid #f3f4f6; padding-top: 30px; }
+.footer { width: 100%; border-top: 3px solid #f3f4f6; padding-top: 30px; display: flex;justify-content: center;}
 .footer p { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: #9ca3af; margin: 0; text-align: center; }
 
 /* --- RESPONSIVE / MEDIA QUERY --- */
