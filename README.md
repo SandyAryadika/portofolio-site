@@ -35,6 +35,7 @@ src/
 │   └── images/      # Project screenshots & certificates
 ├── components/      # Reusable UI components
 │   ├── CardSwap.jsx      # 3D Card swapping animation
+│   ├── DecryptedText.jsx # Matrix-style text reveal animation
 │   ├── Lanyard.jsx       # Physics-based lanyard component
 │   ├── Navbar.jsx        # Navigation bar
 │   ├── ScrollReveal.jsx  # Text reveal animation wrapper
