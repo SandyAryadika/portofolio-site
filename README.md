@@ -55,7 +55,7 @@ Follow these steps to run the project locally:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/SandyAryadika/portofolio-site.git](https://github.com/SandyAryadika/portofolio-site.git)
+    git clone https://github.com/SandyAryadika/portofolio-site.git
     cd portofolio-site
     ```
 
