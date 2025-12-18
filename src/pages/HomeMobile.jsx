@@ -1,13 +1,9 @@
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
-import '../styles/home.css'; // Tetap pakai CSS yang sama
+import '../styles/home.css';
 import { FaEnvelope, FaInstagram, FaLinkedin, FaGithub, FaCopy, FaCheck } from 'react-icons/fa';
 
-// Import Gambar (Sama seperti Home.jsx)
-import reactLogo from '../assets/react.svg';
-import htmlIcon from '../assets/images/web.jpg'; // Pastikan path sesuai
-import cssIcon from '../assets/images/web.jpg';
-import jsIcon from '../assets/images/javascript.jpg';
+// IMPORT GAMBAR (Pastikan path ini sesuai dengan struktur folder Anda)
 import project1 from '../assets/images/news-portal.png';
 import project2 from '../assets/images/ifishy.png';
 import project3 from '../assets/images/web-personal.png';
@@ -21,147 +17,214 @@ const HomeMobile = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <div className="home-wrapper-mobile" style={{ overflowX: 'hidden' }}>
-      {/* HERO SECTION MOBILE */}
-      <section className="hero-container" id="home" style={{ display: 'flex', flexDirection: 'column', height: 'auto', minHeight: '100vh', padding: '120px 20px 60px 20px', alignItems: 'center', textAlign: 'center' }}>
-        <div className="hero-content" style={{ alignItems: 'center', textAlign: 'center' }}>
-          <h2>Hello, I'm</h2>
-          <h1 style={{ fontSize: '3rem', lineHeight: '1.2' }}>Sandy Aryadika</h1>
-          
-          <div className="hero-subtitle-container" style={{ justifyContent: 'center', marginBottom: '2rem' }}>
-            <span className="decrypted-sub" style={{ textAlign: 'center' }}>
-              Cloud Computing Student<br/>Fullstack Enthusiast
-            </span>
-          </div>
+  // Style Objek untuk kerapihan (Reusable)
+  const sectionStyle = {
+    padding: '60px 24px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    boxSizing: 'border-box'
+  };
 
-          <div className="cta-buttons" style={{ flexDirection: 'column', width: '100%', gap: '15px' }}>
-            <a href="#projects" className="btn primary" style={{ width: '100%', justifyContent: 'center' }}>View Projects</a>
-            <a href="#contact" className="btn secondary" style={{ width: '100%', justifyContent: 'center' }}>Contact Me</a>
-          </div>
+  const titleStyle = {
+    fontFamily: 'AmstirPixel, sans-serif',
+    fontSize: '3rem',
+    color: '#1f204a',
+    marginBottom: '1.5rem',
+    textAlign: 'center',
+    lineHeight: '1'
+  };
+
+  const textStyle = {
+    fontFamily: 'Plus Jakarta Sans, sans-serif',
+    fontSize: '1rem',
+    color: '#4b5563',
+    lineHeight: '1.7',
+    textAlign: 'justify',
+    marginBottom: '1rem'
+  };
+
+  return (
+    <div className="home-wrapper-mobile" style={{ overflowX: 'hidden', background: '#fff' }}>
+      
+      {/* 1. HERO SECTION (Lebih Bersih) */}
+      <section style={{ 
+        minHeight: '90vh', 
+        padding: '120px 24px 40px 24px', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        textAlign: 'center',
+        background: 'linear-gradient(to bottom, #ffffff, #f9fafb)' 
+      }} id="home">
+        
+        <h2 style={{ fontFamily: 'AmstirPixel, sans-serif', fontSize: '2.5rem', color: '#6366f1', margin: '0' }}>
+          Hello, I'm
+        </h2>
+        
+        <h1 style={{ 
+          fontFamily: 'AmstirPixel, sans-serif', 
+          fontSize: '4.5rem', 
+          color: '#1f204a', 
+          lineHeight: '0.9', 
+          marginBottom: '20px' 
+        }}>
+          Sandy<br/>Aryadika
+        </h1>
+
+        <div style={{ 
+          background: '#f3f4f6', 
+          padding: '10px 20px', 
+          borderRadius: '50px', 
+          marginBottom: '30px' 
+        }}>
+          <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#4b5563', fontWeight: '600', fontSize: '0.9rem' }}>
+            Cloud Computing • Fullstack • UI/UX
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '100%', maxWidth: '300px' }}>
+          <a href="#projects" className="btn primary" style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}>
+            View My Work
+          </a>
+          <a href="#contact" className="btn secondary" style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}>
+            Contact Me
+          </a>
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="marquee-container">
+      {/* 2. MARQUEE (Pemisah Visual) */}
+      <div className="marquee-container" style={{ padding: '15px 0', borderTop: '1px solid #e5e7eb', borderBottom: '1px solid #e5e7eb' }}>
         <div className="marquee-track">
-          <div className="marquee-content">
+          <div className="marquee-content" style={{ fontSize: '2.5rem', opacity: '0.8' }}>
             FULLSTACK • CLOUD • UI/UX • BACKEND • FRONTEND • DEVOPS • 
             FULLSTACK • CLOUD • UI/UX • BACKEND • FRONTEND • DEVOPS •
           </div>
         </div>
       </div>
 
-      {/* ABOUT SECTION */}
-      <section className="about-section" id="about">
-        <div className="about-content">
-          <h2 className="section-title" style={{ fontSize: '3.5rem', textAlign: 'center' }}>About Me</h2>
-          <div className="about-text">
-            <p style={{ textAlign: 'justify' }}>
-              I am a 6th-semester student majoring in <b>Information Technology</b> with a focus on <b>Cloud Computing</b>. 
-              I have a strong passion for building scalable web applications and managing cloud infrastructure.
-            </p>
-            <p style={{ textAlign: 'justify' }}>
-              Currently, I am exploring modern web technologies like <b>React, Vite, and Node.js</b> while also deepening my knowledge in <b>Google Cloud Platform (GCP)</b>.
-            </p>
-          </div>
+      {/* 3. ABOUT ME */}
+      <section style={sectionStyle} id="about">
+        <h2 style={titleStyle}>About Me</h2>
+        <div style={{ maxWidth: '600px' }}>
+          <p style={textStyle}>
+            I am a 6th-semester student majoring in <b>Information Technology</b> with a focus on <b>Cloud Computing</b>. 
+            Passionate about building scalable web applications and managing cloud infrastructure.
+          </p>
+          <p style={textStyle}>
+            Currently exploring modern tech stacks like <b>React, Vite, Node.js</b> and deepening knowledge in <b>Google Cloud Platform (GCP)</b>.
+          </p>
         </div>
       </section>
 
-      {/* SKILLS SECTION (Simplified List) */}
-      <section className="skills-section" id="skills">
-        <div style={{ width: '100%' }}>
-          <h2 className="section-title" style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '40px' }}>Skills</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', justifyContent: 'center' }}>
-            {['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js', 'Google Cloud', 'Git', 'Linux', 'Vite', 'Tailwind'].map((skill) => (
-              <span key={skill} className="skill-pill" style={{ fontSize: '1rem' }}>{skill}</span>
-            ))}
-          </div>
+      {/* 4. SKILLS (Lebih Rapi & Padat) */}
+      <section style={{ ...sectionStyle, background: '#f9fafb' }} id="skills">
+        <h2 style={titleStyle}>Skills</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', maxWidth: '400px' }}>
+          {['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js', 'Google Cloud', 'Git', 'Linux', 'Vite', 'Tailwind', 'Python', 'SQL'].map((skill) => (
+            <span key={skill} style={{ 
+              background: 'white', 
+              border: '1px solid #e5e7eb', 
+              padding: '8px 20px', 
+              borderRadius: '50px', 
+              fontSize: '0.9rem',
+              fontFamily: 'Plus Jakarta Sans, sans-serif',
+              fontWeight: '600',
+              color: '#1f204a',
+              boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+            }}>
+              {skill}
+            </span>
+          ))}
         </div>
       </section>
 
-      {/* PROJECTS SECTION */}
-      <section className="projects-section" id="projects">
-        <div className="projects-container">
-          <h2 className="section-title" style={{ fontSize: '3.5rem', textAlign: 'center' }}>Projects</h2>
-          <div className="projects-grid" style={{ gridTemplateColumns: '1fr', gap: '40px' }}>
-            
-            {/* Project 1 */}
-            <div className="project-card">
-              <div className="card-image-wrapper" style={{ height: '200px' }}>
-                <img src={project1} alt="News Portal" style={{ filter: 'grayscale(0)' }} />
-              </div>
-              <div className="card-content">
-                <h3>News Portal</h3>
-                <p>A comprehensive news aggregation platform built with modern web technologies.</p>
-                <div className="card-tags">
-                  <span>React</span><span>API</span><span>CSS</span>
-                </div>
-              </div>
-            </div>
-
-             {/* Project 2 */}
-             <div className="project-card">
-              <div className="card-image-wrapper" style={{ height: '200px' }}>
-                <img src={project2} alt="iFishy" style={{ filter: 'grayscale(0)' }} />
-              </div>
-              <div className="card-content">
-                <h3>iFishy</h3>
-                <p>An aquatic marketplace and information hub for fish enthusiasts.</p>
-                <div className="card-tags">
-                  <span>Kotlin</span><span>Mobile</span>
-                </div>
-              </div>
-            </div>
-
-             {/* Project 3 */}
-             <div className="project-card">
-              <div className="card-image-wrapper" style={{ height: '200px' }}>
-                <img src={project3} alt="Portfolio" style={{ filter: 'grayscale(0)' }} />
-              </div>
-              <div className="card-content">
-                <h3>Personal Web</h3>
-                <p>My personal portfolio website featuring 3D animations and interactive UI.</p>
-                <div className="card-tags">
-                  <span>React</span><span>Three.js</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
-      <section className="contact-section" id="contact">
-        <div className="contact-container">
-          <h2 className="section-title" style={{ fontSize: '3.5rem' }}>Contact</h2>
-          <p className="contact-subtitle">Feel free to reach out for collaborations!</p>
+      {/* 5. PROJECTS (Card Style Improved) */}
+      <section style={sectionStyle} id="projects">
+        <h2 style={titleStyle}>Selected Projects</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '100%', maxWidth: '400px' }}>
           
-          <div className="email-box" onClick={handleCopyEmail}>
-            <FaEnvelope className="email-icon" />
-            <span className="email-text" style={{ fontSize: '1.2rem' }}>sandyaryadika@gmail.com</span>
-            {copied ? <FaCheck className="copy-icon" /> : <FaCopy className="copy-icon" />}
-            <div className={`copy-feedback ${copied ? 'active' : ''}`}>Copied!</div>
-          </div>
+          {/* Project Card Component */}
+          {[
+            { img: project1, title: 'News Portal', desc: 'Comprehensive news aggregation platform.', tags: ['React', 'API'] },
+            { img: project2, title: 'iFishy', desc: 'Aquatic marketplace & info hub.', tags: ['Kotlin', 'Mobile'] },
+            { img: project3, title: 'Personal Web', desc: 'Interactive 3D portfolio website.', tags: ['React', 'Three.js'] }
+          ].map((item, index) => (
+            <div key={index} style={{ 
+              background: 'white', 
+              borderRadius: '20px', 
+              border: '1px solid #e5e7eb',
+              overflow: 'hidden',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.05)'
+            }}>
+              <div style={{ height: '200px', width: '100%', background: '#f3f4f6' }}>
+                <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div style={{ padding: '24px' }}>
+                <h3 style={{ fontFamily: 'AmstirPixel, sans-serif', fontSize: '2rem', margin: '0 0 10px 0', color: '#1f204a' }}>{item.title}</h3>
+                <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '0.95rem', color: '#6b7280', lineHeight: '1.5', marginBottom: '20px' }}>{item.desc}</p>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  {item.tags.map(tag => (
+                    <span key={tag} style={{ 
+                      fontSize: '0.75rem', fontWeight: 'bold', 
+                      color: '#6366f1', background: '#e0e7ff', 
+                      padding: '4px 12px', borderRadius: '6px' 
+                    }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
 
-          <div className="social-links">
-            <a href="https://instagram.com/sandyary_" className="social-btn">
-              <FaInstagram /> Instagram
-            </a>
-            <a href="https://linkedin.com/in/sandyaryadika" className="social-btn">
-              <FaLinkedin /> LinkedIn
-            </a>
-            <a href="https://github.com/sandyary" className="social-btn">
-              <FaGithub /> GitHub
-            </a>
-          </div>
         </div>
       </section>
 
-      <footer className="footer">
-        <p>© 2024 Sandy Aryadika. All Rights Reserved.</p>
-      </footer>
+      {/* 6. CONTACT (Lebih Menonjol) */}
+      <section style={{ ...sectionStyle, background: '#1f204a', color: 'white', marginBottom: '0', borderRadius: '40px 40px 0 0' }} id="contact">
+        <h2 style={{ ...titleStyle, color: 'white', marginTop: '20px' }}>Let's Connect</h2>
+        <p style={{ ...textStyle, color: '#9ca3af', textAlign: 'center', marginBottom: '40px' }}>
+          Open for collaboration and new opportunities.
+        </p>
+        
+        <div 
+          onClick={handleCopyEmail}
+          style={{ 
+            background: 'rgba(255,255,255,0.1)', 
+            border: '1px dashed rgba(255,255,255,0.3)', 
+            padding: '20px', 
+            borderRadius: '15px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '15px',
+            cursor: 'pointer',
+            marginBottom: '40px',
+            width: '100%',
+            maxWidth: '350px',
+            justifyContent: 'center'
+          }}
+        >
+          <FaEnvelope style={{ fontSize: '1.5rem', color: '#818cf8' }} />
+          <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '1.1rem', fontWeight: '600' }}>sandyaryadika@gmail.com</span>
+          {copied ? <FaCheck style={{ color: '#4ade80' }} /> : <FaCopy style={{ color: '#9ca3af' }} />}
+        </div>
+
+        <div style={{ display: 'flex', gap: '20px', marginBottom: '40px' }}>
+          <a href="https://instagram.com/sandyary_" style={{ color: 'white', fontSize: '1.8rem' }}><FaInstagram /></a>
+          <a href="https://linkedin.com/in/sandyaryadika" style={{ color: 'white', fontSize: '1.8rem' }}><FaLinkedin /></a>
+          <a href="https://github.com/sandyary" style={{ color: 'white', fontSize: '1.8rem' }}><FaGithub /></a>
+        </div>
+
+        <footer style={{ borderTop: '1px solid rgba(255,255,255,0.1)', width: '100%', textAlign: 'center', paddingTop: '20px' }}>
+          <p style={{ fontSize: '0.8rem', color: '#6b7280', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+            © 2024 Sandy Aryadika.
+          </p>
+        </footer>
+      </section>
+
     </div>
   );
 };
