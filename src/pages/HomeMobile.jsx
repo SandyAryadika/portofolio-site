@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
-import '../styles/home.css';
+import '../styles/home-mobile.css';
 import { FaEnvelope, FaInstagram, FaLinkedin, FaGithub, FaCopy, FaCheck } from 'react-icons/fa';
 
 // IMPORT GAMBAR (Pastikan path ini sesuai dengan struktur folder Anda)
@@ -94,16 +94,6 @@ const HomeMobile = () => {
           </a>
         </div>
       </section>
-
-      {/* 2. MARQUEE (Pemisah Visual) */}
-      <div className="marquee-container" style={{ padding: '15px 0', borderTop: '1px solid #e5e7eb', borderBottom: '1px solid #e5e7eb' }}>
-        <div className="marquee-track">
-          <div className="marquee-content" style={{ fontSize: '2.5rem', opacity: '0.8' }}>
-            FULLSTACK • CLOUD • UI/UX • BACKEND • FRONTEND • DEVOPS • 
-            FULLSTACK • CLOUD • UI/UX • BACKEND • FRONTEND • DEVOPS •
-          </div>
-        </div>
-      </div>
 
       {/* 3. ABOUT ME */}
       <section style={sectionStyle} id="about">

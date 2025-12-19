@@ -1,0 +1,115 @@
+/* src/styles/home-mobile.css */
+
+/* 1. Font Setup (Pastikan path sesuai) */
+@font-face {
+  font-family: 'AmstirPixel';
+  src: url('../assets/fonts/AmstirPixel.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. Global Mobile Reset */
+.home-wrapper-mobile {
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+  color: #1f204a;
+}
+
+/* 3. Button Styles (Karena di JSX kamu pakai class btn) */
+.btn {
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #1f204a;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(31, 32, 74, 0.2);
+}
+
+.btn.primary:active {
+  transform: scale(0.95);
+  background: #6366f1;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid #1f204a;
+  color: #1f204a;
+}
+
+.btn.secondary:active {
+  background: #1f204a;
+  color: #ffffff;
+}
+
+/* 4. Marquee Animation (Wajib CSS) */
+.marquee-container {
+  width: 100vw;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMobile 20s linear infinite;
+}
+
+.marquee-content {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  color: #1f204a;
+  white-space: nowrap;
+  padding-right: 20px; /* Jarak antar teks */
+}
+
+@keyframes scrollMobile {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 5. Utility Styles */
+b {
+  color: #6366f1;
+}
+
+/* 6. Fix untuk layar sangat kecil (iPhone SE) */
+@media (max-width: 380px) {
+  h1 {
+    font-size: 3.5rem !important;
+  }
+  .email-text {
+    font-size: 1rem !important;
+  }
+}
+
+/* Animasi sederhana saat scroll */
+section {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

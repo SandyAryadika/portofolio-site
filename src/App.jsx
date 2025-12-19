@@ -1,8 +1,8 @@
 // src/App.jsx
 import { useState, useEffect } from "react";
-import { FaLaptopCode } from "react-icons/fa";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
+import HomeMobile from "./pages/HomeMobile"; // Pastikan file ini sudah dibuat
 import "./App.css";
 
 function App() {
@@ -11,20 +11,19 @@ function App() {
   // --- 1. CEK UKURAN LAYAR (RESPONSIF) ---
   useEffect(() => {
     const handleResize = () => {
-      // Batas 1024px (Laptop/PC)
+      // Kita gunakan batas 1024px atau 900px untuk menentukan mode mobile
       setIsDesktop(window.innerWidth >= 1024);
     };
 
-    handleResize(); // Cek awal
+    handleResize(); // Cek saat pertama kali load
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // --- 2. FITUR KEAMANAN (Disederhanakan) ---
+  // --- 2. FITUR KEAMANAN (ANTI-DRAG SAJA) ---
   useEffect(() => {
-    // Kita hapus blokir klik kanan dan keyboard agar user bisa Inspect & Copy
+    // Klik kanan (Inspect) dan Copy diperbolehkan (tidak ada pencegahan)
     
-    // Opsional: Tetap cegah Drag & Drop Gambar jika Anda ingin melindungi aset visual saja
     const handleDragStart = (e) => {
       if (e.target.tagName === 'IMG') {
         e.preventDefault();
@@ -32,55 +31,29 @@ function App() {
     };
 
     document.addEventListener("dragstart", handleDragStart);
-
     return () => {
       document.removeEventListener("dragstart", handleDragStart);
     };
   }, []);
 
-  // --- 3. TAMPILAN WARNING (HANYA JIKA BUKAN DESKTOP) ---
-  if (!isDesktop) {
-    return (
-      <div style={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#1f204a",
-        color: "#ffffff",
-        textAlign: "center",
-        padding: "20px",
-        fontFamily: "sans-serif",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        zIndex: 9999,
-      }}>
-        <FaLaptopCode size={80} style={{ marginBottom: "20px", color: "#6366f1" }} />
-        <h2 style={{ fontSize: "2rem", marginBottom: "15px" }}>Desktop Mode Only</h2>
-        <p style={{ maxWidth: "500px", lineHeight: "1.6", fontSize: "1.1rem", color: "#e5e7eb" }}>
-          Website ini menggunakan animasi kompleks yang dioptimalkan untuk layar besar.
-        </p>
-        <p style={{ marginTop: "20px", fontWeight: "bold", color: "#6366f1" }}>
-          Silakan buka melalui Laptop atau PC untuk pengalaman terbaik.
-        </p>
-      </div>
-    );
-  }
-
-  // --- 4. TAMPILAN UTAMA ---
+  // --- 3. TAMPILAN UTAMA (LOGIC SWITCHING) ---
   return (
     <div 
       style={{ 
         width: "100%", 
-        height: "100%" 
-        /* userSelect: "none" DIHAPUS agar user bisa copy teks */
+        height: "100%",
+        /* userSelect: "none" Dihapus agar user bisa copy teks */
       }}
     >
       <MainLayout>
-        <Home />
+        {/* Jika layar Desktop (>= 1024px) tampilkan Home (Versi Berat/Animasi).
+          Jika layar Mobile (< 1024px) tampilkan HomeMobile (Versi Ringan/Simple).
+        */}
+        {isDesktop ? (
+          <Home />
+        ) : (
+          <HomeMobile />
+        )}
       </MainLayout>
     </div>
   );
