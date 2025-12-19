@@ -20,53 +20,20 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // --- 2. FITUR KEAMANAN (ANTI-COPY, ANTI-KLIK KANAN, DLL) ---
+  // --- 2. FITUR KEAMANAN (Disederhanakan) ---
   useEffect(() => {
-    // A. Mencegah Klik Kanan
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
-
-    // B. Mencegah Shortcut Developer Tools (F12, Ctrl+Shift+I, Ctrl+U, dll)
-    const handleKeyDown = (e) => {
-      // F12
-      if (e.key === "F12") {
-        e.preventDefault();
-      }
-      // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element)
-      if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) {
-        e.preventDefault();
-      }
-      // Ctrl+U (View Source)
-      if (e.ctrlKey && e.key === "u") {
-        e.preventDefault();
-      }
-      // Ctrl+S (Save Page)
-      if (e.ctrlKey && e.key === "s") {
-        e.preventDefault();
-      }
-      // Ctrl+P (Print)
-      if (e.ctrlKey && e.key === "p") {
-        e.preventDefault();
-      }
-    };
-
-    // C. Mencegah Drag & Drop Gambar
+    // Kita hapus blokir klik kanan dan keyboard agar user bisa Inspect & Copy
+    
+    // Opsional: Tetap cegah Drag & Drop Gambar jika Anda ingin melindungi aset visual saja
     const handleDragStart = (e) => {
       if (e.target.tagName === 'IMG') {
         e.preventDefault();
       }
     };
 
-    // Pasang Event Listener Global
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("dragstart", handleDragStart);
 
-    // Bersihkan saat unmount
     return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("dragstart", handleDragStart);
     };
   }, []);
@@ -90,7 +57,6 @@ function App() {
         top: 0,
         left: 0,
         zIndex: 9999,
-        userSelect: "none", // Teks warning juga tidak bisa dicopy
       }}>
         <FaLaptopCode size={80} style={{ marginBottom: "20px", color: "#6366f1" }} />
         <h2 style={{ fontSize: "2rem", marginBottom: "15px" }}>Desktop Mode Only</h2>
@@ -104,18 +70,13 @@ function App() {
     );
   }
 
-  // --- 4. TAMPILAN UTAMA (LAYOUT TIDAK BERUBAH) ---
+  // --- 4. TAMPILAN UTAMA ---
   return (
-    // Wrapper div ini hanya berfungsi untuk mematikan seleksi teks (user-select: none)
-    // Tidak akan merubah layout MainLayout di dalamnya.
     <div 
       style={{ 
-        userSelect: "none",           /* Standar modern */
-        WebkitUserSelect: "none",     /* Safari/Chrome */
-        MozUserSelect: "none",        /* Firefox */
-        msUserSelect: "none",         /* IE/Edge */
-        width: "100%",                /* Pastikan full width */
-        height: "100%"                /* Pastikan full height */
+        width: "100%", 
+        height: "100%" 
+        /* userSelect: "none" DIHAPUS agar user bisa copy teks */
       }}
     >
       <MainLayout>
