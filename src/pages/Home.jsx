@@ -6,6 +6,7 @@ import Lanyard from "../components/Lanyard";
 import DecryptedText from "../components/DecryptedText";
 import TextType from "../components/TextType";
 import ScrollReveal from "../components/ScrollReveal";
+import SkewScroll from "../components/SkewScroll";
 
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -41,10 +42,6 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [copied, setCopied] = useState(false);
   const email = "aryadikawidodo0@gmail.com";
-
-  // --- DATA ---
-  const textContent = "WELCOME\u00A0TO\u00A0MY\u00A0PERSONAL\u00A0WEBSITE\u00A0";
-  const repeatedText = Array(4).fill(textContent).join("");
 
   const projects = [
     {
@@ -297,13 +294,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="marquee-container">
-        <div className="marquee-track" ref={marqueeRef}>
-          <div className="marquee-content">{repeatedText}</div>
-          <div className="marquee-content">{repeatedText}</div>
-        </div>
-      </div>
+      <SkewScroll />
 
       {/* --- ABOUT SECTION --- */}
       <section className="about-section" id="about">
@@ -413,11 +404,11 @@ export default function Home() {
                 Education
               </ScrollReveal>
             </h2>
-            <p className="section-subtitle">
+            <div className="section-subtitle">
               <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={0} blurStrength={5} stagger={0.02}>
                 My academic journey and milestones.
               </ScrollReveal>
-            </p>
+            </div>
           </div>
           <div className="education-list">
             {educationData.map((item) => (
